@@ -9,6 +9,7 @@
   "author": "austincunningham",
   "license": "ISC",
   "dependencies": {
-    "jira-miner": "^0.3.3"
+    "jira-miner": "^0.3.3",
+    "prompt": "^1.0.0"
   }
 }
