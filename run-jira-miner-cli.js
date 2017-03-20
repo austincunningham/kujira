@@ -20,7 +20,7 @@ prompt.get(['username', 'password', 'url', 'project'], function (err, result) {
   console.log('Command-line input received:');
   console.log(' username: ' + result.username);
   console.log(' password: ********');
-  console.log(' url: http://' + result.url);
+  console.log(' url: https://' + result.url);
   console.log(' project: ' + result.project);
 
   // execute jira-miner target to point at the source
