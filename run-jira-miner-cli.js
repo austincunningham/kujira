@@ -1,5 +1,6 @@
 /**
  * Created by austin on 16/03/2017.
+ * node version 6.9.5
  */// jscs:ignore
 
 'use strict';
@@ -7,13 +8,49 @@ var prompt = require('prompt');
 var exec = require('child_process').exec;
 var child;
 
+//validation for propmpt see https://www.npmjs.com/package/prompt
+var schema ={
+  properties: {
+    username: {
+      description: 'Enter your Jira Username',
+      pattern: /^[a-zA-Z0-9._-]+$/,
+      message: 'Username must be characters, numbers, dots, underscores and dashes',
+      required: true
+    },
+    password: {
+      description: 'Enter your Jira password',
+      hidden: true,
+      replace: '*',
+      required: true
+    },
+    url: {
+      description: 'Enter Jira URL e.g. "issues.jboss.org"',
+      pattern: /^[a-zA-Z0-9._-]+$/,
+      message: 'url must be a valid',
+      required: true
+    },
+    project: {
+      description: 'Enter the project name e.g. "RHMAP or RAINCATCH"',
+      pattern: /^[a-zA-Z0-9._-]+$/,
+      message: 'Must be a valid project',
+      required: true
+    },
+    format: {
+      description: 'Enter format either json or csv ,enter for default tsv',
+      pattern: /^[a-z]+$/,
+      required: false
+    }
+  }
+};
+
 // Start the prompt
 
 prompt.start();
 
 // Get three properties from the user: username , password and url and project
 console.log('Enter username, password and url e.g. "issues.jboss.org"');
-prompt.get(['username', 'password', 'url', 'project'], function (err, result) {
+//prompt.get(['username', 'password', 'url', 'project'], function (err, result) {
+prompt.get(schema, function(err, result){
 
   // Log the results.
 
@@ -46,7 +83,7 @@ prompt.get(['username', 'password', 'url', 'project'], function (err, result) {
 
 
   // use jira-miner query to access a local search file
-  child = exec('jira-miner query search --key=RAINCATCH-623 --json',
+  child = exec('jira-miner query search --key=RAINCATCH-623 --'+ result.format,
   function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
