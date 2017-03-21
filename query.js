@@ -15,7 +15,7 @@ prompt.start();
 prompt.get(['key'], function (err, result) {
 
   // use jira-miner query to access a local search file --key=RAINCATCH-623
-  child = exec('jira-miner query search --key='+result.key+'--json',
+  child = exec('jira-miner query search --key=' + result.key + '--json',
   function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
