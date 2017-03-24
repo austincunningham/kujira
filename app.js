@@ -3,14 +3,21 @@
  */
 'use strict';
 var prompt = require('prompt');
-
-var populate = require('./populate.js');
+var colors = require("colors/safe");
 
 var target = require('./target.js');
-var query = require('./query.js');
+var populate = require('./populate.js');
+
+//var query = require('./query.js');
 
 
-target();
-prompt.stop();
-//populate();
+//target().then(populate();
+if(target()){
+  try {
+    console.log('do I ever get here?')
+    populate();
+  } catch (e){
+      console.log(error);
+  }
+}
 //query();
