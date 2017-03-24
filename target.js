@@ -2,17 +2,47 @@
  * Created by acunningham on 20/03/17.
  */
 'use strict';
+var schema = require('./schema.js');
 var prompt = require('prompt');
+var colors = require("colors/safe");
 var exec = require('child_process').exec;
 var child;
+
+var schema = {
+  properties: {
+    username: {
+      description: colors.blue('Enter your Jira Username'),
+      pattern: /^[a-zA-Z0-9._-]+$/,
+      message: 'Username must be characters, numbers, dots, underscores and dashes',
+      required: true,
+    },
+    password: {
+      description: colors.blue('Enter your Jira password'),
+      pattern: /^[a-zA-Z0-9]+$/,
+      hidden: true,
+      message: 'Invalid characters in password',
+      replace: '*',
+      required: true,
+    },
+    url: {
+      description: colors.blue('Enter Jira URL e.g. "issues.jboss.org"'),
+      pattern: /^[a-zA-Z0-9._-]+$/,
+      message: 'url must be a valid',
+      required: true,
+    },
+  },
+}
 
 // Start the prompt
 
 prompt.start();
-
+prompt.message = colors.green("-->");
+prompt.delimiter = colors.green(":");
 // Get three properties from the user: username , password and url and project
 console.log('Enter username, password and url e.g. "issues.jboss.org"');
-prompt.get(['username', 'password', 'url'], function (err, result) {
+prompt.get(schema , function (err, result) {
+
+//prompt.get(['username', 'password', 'url'], function (err, result) {
 
   // Log the results.
 

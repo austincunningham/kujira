@@ -3,17 +3,34 @@
  */
 'use strict';
 var prompt = require('prompt');
+var colors = require("colors/safe");
 var exec = require('child_process').exec;
 var child;
+
+//validation for prompt see https://www.npmjs.com/package/prompt
+var schema = {
+  properties: {
+    project: {
+      description: colors.blue('Enter the project name e.g. "RHMAP or RAINCATCH"'),
+      pattern: /^[a-zA-Z0-9._-]+$/,
+      message: 'Must be a valid project',
+      required: true
+    }
+  }
+};
+
 
 // Start the prompt
 
 prompt.start();
+prompt.message = colors.green("-->");
+prompt.delimiter = colors.green(":");
 
 // Get three properties from the user: username , password and url and project
 //console.log('Enter project name  e.g. "RAINCATCH or RHMAP"');
-prompt.get(['project'], function (err, result) {
+//prompt.get(['project'], function (err, result) {
 
+prompt.get(schema, function (error, results){
   // Log the results.
   console.log(' project: ' + result.project);
 
