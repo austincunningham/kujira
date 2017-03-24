@@ -13,8 +13,9 @@ var populate = require('./populate.js');
 
 //target().then(populate();
 if(target()){
+  console.log('do i ever get here');
   try {
-    console.log('do I ever get here?')
+    console.log('do I ever get here?');
     populate();
   } catch (e){
       console.log(error);
