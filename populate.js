@@ -1,36 +1,39 @@
 /**
  * Created by acunningham on 20/03/17.
  */
+
 'use strict';
 var prompt = require('prompt');
-var colors = require("colors/safe");
+var query = require('./query.js');
+var colors = require('colors/safe');
 var exec = require('child_process').exec;
 var child;
 
-//validation for prompt see https://www.npmjs.com/package/prompt
-var schema = {
-  properties: {
-    project: {
-      description: colors.blue('Enter the project name e.g. "RHMAP or RAINCATCH"'),
-      pattern: /^[a-zA-Z0-9._-]+$/,
-      message: 'Must be a valid project',
-      required: true
-    }
-  }
-};
-
-
 // Start the prompt
-prompt.start();
-var populate = function() {
-  prompt.message = colors.green("-->");
-  prompt.delimiter = colors.green(":");
 
-// Get three properties from the user: username , password and url and project
-//console.log('Enter project name  e.g. "RAINCATCH or RHMAP"');
-//prompt.get(['project'], function (err, result) {
+var populate = function (callback) {
+  //validation for prompt see https://www.npmjs.com/package/prompt
 
-  prompt.get(schema, function (error, results) {
+  var schema = {
+    properties: {
+      project: {
+        description: colors.blue('Enter the project name e.g. "RHMAP or RAINCATCH"'),
+        pattern: /^[a-zA-Z0-9._-]+$/,
+        message: 'Must be a valid project',
+        required: true,
+      },
+    },
+  };
+
+  prompt.start();
+  prompt.message = colors.green('-->');
+  prompt.delimiter = colors.green(':');
+
+  // Get three properties from the user: username , password and url and project
+  //console.log('Enter project name  e.g. "RAINCATCH or RHMAP"');
+  //prompt.get(['project'], function (err, result) {
+
+  prompt.get(schema, function (error, result) {
     // Log the results.
     console.log(' project: ' + result.project);
 
@@ -42,13 +45,16 @@ var populate = function() {
       if (error !== null) {
         console.log('exec error: ' + error);
       }
+
       if (stdout != false) {
-        prompt.stop();
-        return true;
+        prompt.emit('stop');
+        query();
       }
+      /*if (typeof callback === 'function') {
+        callback;
+      }*/
     });
   });
-}
-
+};
 
 module.exports = populate;

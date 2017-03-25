@@ -3,7 +3,8 @@
  */
 'use strict';
 var prompt = require('prompt');
-var colors = require("colors/safe");
+var colors = require('colors/safe');
+var populate = require('./populate.js');
 var exec = require('child_process').exec;
 var child;
 
@@ -30,19 +31,20 @@ var schema = {
       required: true,
     },
   },
-}
+};
 
 // Start the prompt
 
-prompt.start();
-var target = function() {
-  prompt.message = colors.green("-->");
-  prompt.delimiter = colors.green(":");
-// Get three properties from the user: username , password and url and project
+
+var target = function () {
+  prompt.start();
+  prompt.message = colors.green('-->');
+  prompt.delimiter = colors.green(':');
+  // Get three properties from the user: username , password and url and project
   console.log('Enter username, password and url e.g. "issues.jboss.org"');
   prompt.get(schema, function (err, result) {
 
-//prompt.get(['username', 'password', 'url'], function (err, result) {
+    //prompt.get(['username', 'password', 'url'], function (err, result) {
 
     // Log the results.
 
@@ -59,12 +61,13 @@ var target = function() {
       if (error !== null) {
         console.log('exec error: ' + error);
       }
-      /*if (stdout != false) {
-        prompt.stop();
-      }*/
+
+      if (stdout != false) {
+        prompt.emit('stop');
+        populate();
+      }
     });
   });
-}
-
+};
 
 module.exports = target;
