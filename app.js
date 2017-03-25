@@ -10,6 +10,7 @@ var target = require('./target.js');
 var populate = require('./populate.js');
 var query = require('./query.js');
 
+//using callbacks to run in order
 target(function () {
   populate(function () {
     query(function () {

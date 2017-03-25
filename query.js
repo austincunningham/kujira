@@ -32,7 +32,6 @@ prompt.delimiter = colors.green(':');
 
 // Get three properties from the user: username , password and url and project
 //console.log('Enter key e.g. "RAINCATCH-623"');
-//prompt.get(['key'], function (err, result) {
 var query = function (callback) {
   prompt.get(schema, function (err, result) {
 
@@ -45,6 +44,7 @@ var query = function (callback) {
         console.log('exec error: ' + error);
       }
 
+      //checks standard out is present and the callback is a function
       if (typeof callback === 'function' && stdout != false) {
         //prompt.emit('stop');
         callback();

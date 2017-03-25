@@ -34,18 +34,16 @@ var schema = {
 };
 
 // Start the prompt
+prompt.start();
+prompt.message = colors.green('-->');
+prompt.delimiter = colors.green(':');
 
+// Get three properties from the user: username , password and url and project
+console.log('Enter username, password and url e.g. "issues.jboss.org"');
 
 var target = function (callback) {
-  prompt.start();
-  prompt.message = colors.green('-->');
-  prompt.delimiter = colors.green(':');
-  // Get three properties from the user: username , password and url and project
-  console.log('Enter username, password and url e.g. "issues.jboss.org"');
+
   prompt.get(schema, function (err, result) {
-
-    //prompt.get(['username', 'password', 'url'], function (err, result) {
-
     // Log the results.
 
     console.log('Command-line input received:');
@@ -62,6 +60,7 @@ var target = function (callback) {
         console.log('exec error: ' + error);
       }
 
+      //checks standard out is present and the callback is a function
       if (typeof callback === 'function' && stdout != false) {
         //prompt.emit('stop');
         callback();
