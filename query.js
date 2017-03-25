@@ -44,12 +44,13 @@ var query = function (callback) {
       if (error !== null) {
         console.log('exec error: ' + error);
       }
+
+      if (typeof callback === 'function' && stdout != false) {
+        //prompt.emit('stop');
+        callback();
+      }
     });
   });
-
-  if (typeof callback === 'function') {
-    callback();
-  }
 };
 
 module.exports = query;

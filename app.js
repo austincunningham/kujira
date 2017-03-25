@@ -10,5 +10,11 @@ var target = require('./target.js');
 var populate = require('./populate.js');
 var query = require('./query.js');
 
-target();
+target(function () {
+  populate(function () {
+    query(function () {
+      //they should finish in order
+    });
+  });
+});
 

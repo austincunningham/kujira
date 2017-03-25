@@ -36,7 +36,7 @@ var schema = {
 // Start the prompt
 
 
-var target = function () {
+var target = function (callback) {
   prompt.start();
   prompt.message = colors.green('-->');
   prompt.delimiter = colors.green(':');
@@ -62,9 +62,9 @@ var target = function () {
         console.log('exec error: ' + error);
       }
 
-      if (stdout != false) {
-        prompt.emit('stop');
-        populate();
+      if (typeof callback === 'function' && stdout != false) {
+        //prompt.emit('stop');
+        callback();
       }
     });
   });

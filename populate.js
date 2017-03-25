@@ -46,9 +46,9 @@ var populate = function (callback) {
         console.log('exec error: ' + error);
       }
 
-      if (stdout != false) {
-        prompt.emit('stop');
-        query();
+      if (typeof callback === 'function' && stdout != false) {
+        //prompt.emit('stop');
+        callback();
       }
       /*if (typeof callback === 'function') {
         callback;
