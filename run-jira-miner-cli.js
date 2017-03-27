@@ -1,6 +1,7 @@
 /**
  * Created by austin on 16/03/2017.
  * node version 6.9.5
+ * this file will be removed when merging with master
  */// jscs:ignore
 
 'use strict';
