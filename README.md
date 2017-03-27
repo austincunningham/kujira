@@ -29,7 +29,29 @@ To get started you'll need to have the following requirements installed
     
 ## Commands
      
+
     node app
     node target
     node populate
     node query 
+    
+```bash
+$ node target
+Enter username, password and url e.g. "issues.jboss.org"
+-->:Enter your Jira Username: enterUserName
+-->:Enter your Jira password: *********    
+-->:Enter Jira URL e.g. "issues.jboss.org": issues.jboss.org
+Command-line input received:
+ username: enterUserName
+ password: ********
+ url: https://issues.jboss.org
+stdout: { url: 'https://issues.jboss.org', user: 'enterUserName' } 'Successfu
+lly targeted JIRA'
+
+````
+
+````bash
+$ node populate    
+-->:Enter the project name e.g. "RHMAP or RAINCATCH": RAINCATCH
+ project: RAINCATCH
+````
