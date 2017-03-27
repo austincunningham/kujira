@@ -18,7 +18,9 @@ To get started you'll need to have the following requirements installed
 - prompt.js<sup>3</sup>
     
 <sup>2</sup> See https://www.npmjs.com/package/jira-miner
-<sup>3</sup>https://www.npmjs.com/package/prompt
+
+<sup>3</sup> See https://www.npmjs.com/package/prompt
+
 ## Getting started
     
     git clone <this repo>
