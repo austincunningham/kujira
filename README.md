@@ -14,11 +14,11 @@ To get started you'll need to have the following requirements installed
 
 ## Dependencies 
 
-    jira-miner.js<sup>1</sup>
-    prompt.js<sup>2</sup>
+- jira-miner.js<sup>2</sup>
+- prompt.js<sup>3</sup>
     
-    <sup>1</sup> See https://www.npmjs.com/package/jira-miner
-    <sup>2</sup>https://www.npmjs.com/package/prompt
+<sup>2</sup> See https://www.npmjs.com/package/jira-miner
+<sup>3</sup>https://www.npmjs.com/package/prompt
 ## Getting started
     
     git clone <this repo>
