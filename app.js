@@ -15,6 +15,7 @@ target(function () {
   populate(function () {
     query(function () {
       //they should finish in order
+      console.log('End of search');
     });
   });
 });
