@@ -14,12 +14,15 @@ To get started you'll need to have the following requirements installed
 
 ## Dependencies 
 
-- jira-miner.js<sup>2</sup>
-- prompt.js<sup>3</sup>
+- jira-miner <sup>2</sup>
+- prompt <sup>3</sup>
+- colors <sup>4</sup>
     
 <sup>2</sup> See https://www.npmjs.com/package/jira-miner
 
 <sup>3</sup> See https://www.npmjs.com/package/prompt
+
+<sup>4</sup> See https://www.npmjs.com/package/colors
 
 ## Getting started
     
