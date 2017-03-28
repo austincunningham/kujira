@@ -5,7 +5,7 @@
 //search that finds issue type == Bug and takes a command line argument
 // query search.js --key=RAINCATCH-623 --json
 
-const test3 = [
+const search = [
   ctx => {
     const args = ctx.args;
     console.log(ctx.args);
@@ -24,5 +24,5 @@ const test3 = [
   },
 ];
 
-module.exports.query = test3;
+module.exports.query = search;
 
