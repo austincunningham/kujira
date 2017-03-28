@@ -14,11 +14,11 @@ const search = [
 /*        .where(issue => {
           return issue['key'] === args.key;//command line key
         })*/
-        .where (issue => {
+        .where(issue => {
           return issue['Issue Type'] === args.issuetype;
         })
         .where(issue => {
-          return issue['key'] === 'RAINCATCH-623';
+          return issue['key'] === args.key;//'RAINCATCH-623';
         });
  /*       .where(issue => {
           return issue['Issue Type'] === args.issuetype;//command line key

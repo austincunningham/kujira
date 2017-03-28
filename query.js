@@ -3,18 +3,10 @@
  */
 
 'use strict';
-var prompt = require('prompt');
 var colors = require('colors/safe');
-var readlineSync = require('readline-sync')
+var readlineSync = require('readline-sync');
 var exec = require('child_process').exec;
 var child;
-
-
-/*
-prompt.start();
-prompt.message = colors.green('-->');
-prompt.delimiter = colors.green(':');
-*/
 
 // Get three properties from the user: username , password and url and project
 //console.log('Enter key e.g. "RAINCATCH-623"');
@@ -25,13 +17,14 @@ var query = function (callback) {
   var yesNo = '';
   var format = '';
   format = readlineSync.question('Enter format either json or csv ,enter for default tsv : ');
-  while(yesNo !== 'y') {
-      field = readlineSync.question('Enter the field you wish to search for : ');
-      value = readlineSync.question('Enter the value you wish to search for : ');
-      yesNo = readlineSync.question('Enter "y" quit or enter to continue : ');
-      searchString = '--' + field + '=' + value + ' ' + searchString;
-      console.log(yesNo, searchString);
+  while (yesNo !== 'y') {
+    field = readlineSync.question('Enter the field you wish to search for : ');
+    value = readlineSync.question('Enter the value you wish to search for : ');
+    yesNo = readlineSync.question('Enter "y" quit or enter to continue : ');
+    searchString = '--' + field + '=' + value + ' ' + searchString;
+    console.log(yesNo, searchString);
   }
+
   child = exec('jira-miner query search ' + searchString + ' --' + format,
   function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
@@ -44,7 +37,7 @@ var query = function (callback) {
     if (typeof callback === 'function' && stdout != false) {
       callback();
     }
-  })
+  });
 };
 
 query();// for testing

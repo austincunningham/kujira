@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "jira-miner": "^0.3.3",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "readline-sync": "^1.4.7"
   }
 }
