@@ -41,4 +41,4 @@ var query = function (callback) {
 };
 
 query();// for testing
-//module.exports = query;
+module.exports = query;
