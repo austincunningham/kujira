@@ -11,23 +11,30 @@ const search = [
     const args = ctx.args;
     console.log(ctx.args);
     return ctx.collection.chain()
-        .where(issue => {
-          if (args.issuetype){
-            return issue['Issue Type'] === args.issuetype;
-          }
-          return issue;
-        })
-        .where(issue => {
-          console.log('do i ever get here', issue);
-          return issue['key'] === args.key;//'RAINCATCH-623';
-        });
- /*       .where(issue => {
-          return issue['Issue Type'] === args.issuetype;//command line key
-        })
+      .where(issue => {
+        if (args.issuetype) {
+          return issue['Issue Type'] === args.issuetype;
+        }
 
-        .where (issue => {
-          return issue['Fix Version/s'] === args.fixVersion;
-        });*/
+        //console.log(issue);
+        return ctx.acc;
+      })
+      .where(issue => {
+        console.log('do i ever get here', issue);
+
+        if (args.key) {
+          return issue.key === args.key;//'RAINCATCH-623';
+        }
+
+        return issue;
+      });
+    /*       .where(issue => {
+             return issue['Issue Type'] === args.issuetype;//command line key
+           })
+
+           .where (issue => {
+             return issue['Fix Version/s'] === args.fixVersion;
+           });*/
   },
 ];
 
