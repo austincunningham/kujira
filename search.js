@@ -11,13 +11,14 @@ const search = [
     const args = ctx.args;
     console.log(ctx.args);
     return ctx.collection.chain()
-/*        .where(issue => {
-          return issue['key'] === args.key;//command line key
-        })*/
         .where(issue => {
-          return issue['Issue Type'] === args.issuetype;
+          if (args.issuetype){
+            return issue['Issue Type'] === args.issuetype;
+          }
+          return issue;
         })
         .where(issue => {
+          console.log('do i ever get here', issue);
           return issue['key'] === args.key;//'RAINCATCH-623';
         });
  /*       .where(issue => {

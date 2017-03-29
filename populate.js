@@ -4,7 +4,6 @@
 
 'use strict';
 var prompt = require('prompt');
-var query = require('./query.js');
 var colors = require('colors/safe');
 var exec = require('child_process').exec;
 var child;

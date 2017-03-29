@@ -4,7 +4,6 @@
 'use strict';
 var prompt = require('prompt');
 var colors = require('colors/safe');
-var populate = require('./populate.js');
 var exec = require('child_process').exec;
 var child;
 
@@ -18,7 +17,7 @@ var schema = {
     },
     password: {
       description: colors.blue('Enter your Jira password'),
-      pattern: /^[a-zA-Z0-9]+$/,
+      pattern: /^[a-zA-Z0-9._-]+$/,
       hidden: true,
       message: 'Invalid characters in password',
       replace: '*',

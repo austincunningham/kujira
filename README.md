@@ -34,9 +34,6 @@ To get started you'll need to have the following requirements installed
      
 
     node app
-    node target
-    node populate
-    node query 
     
 ```bash
 $ node target

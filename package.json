@@ -9,6 +9,7 @@
   "author": "austincunningham",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.1.2",
     "jira-miner": "^0.3.3",
     "prompt": "^1.0.0",
     "readline-sync": "^1.4.7"
