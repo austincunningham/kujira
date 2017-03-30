@@ -17,12 +17,15 @@ To get started you'll need to have the following requirements installed
 - jira-miner <sup>2</sup>
 - prompt <sup>3</sup>
 - colors <sup>4</sup>
+- readline-sync <sup>5</sup>
     
 <sup>2</sup> See https://www.npmjs.com/package/jira-miner
 
 <sup>3</sup> See https://www.npmjs.com/package/prompt
 
 <sup>4</sup> See https://www.npmjs.com/package/colors
+
+<sup>5</sup> See https://www.npmjs.com/package/readline-sync
 
 ## Getting started
     
