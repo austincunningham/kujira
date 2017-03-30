@@ -15,7 +15,7 @@ var query = function (callback) {
   var value = '';
   var searchString = '';
   var yesNo = '';
-  var format = '';
+  var format;
   format = readlineSync.question('Enter format either json or csv ,enter for default tsv : ');
   while (yesNo !== 'y') {
     field = readlineSync.question('Enter the field you wish to search for : ');
