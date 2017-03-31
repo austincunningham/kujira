@@ -36,7 +36,8 @@ To get started you'll need to have the following requirements installed
 ## Commands
      
 
-    node app
+    node setup
+    node kujira
     
 ```bash
 $ node target

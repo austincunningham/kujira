@@ -40,5 +40,5 @@ var query = function (callback) {
   });
 };
 
-query();// for testing
+//query();// for testing
 module.exports = query;
