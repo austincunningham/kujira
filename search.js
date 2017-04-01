@@ -20,7 +20,7 @@ const search = [
       })
       .where(issue => {
         if (args.key) {
-          return issue.key === args.key;//'RAINCATCH-623';
+          return issue.key === args.key;//e.g. 'RAINCATCH-623';
         }
 
         return issue === issue;

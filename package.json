@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "consume jira-miner npm via cli prompt",
   "main": "app.js",
-  "bin": {
-    "kujira": "./app.js"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

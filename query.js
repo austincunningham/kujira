@@ -3,19 +3,19 @@
  */
 
 'use strict';
-var colors = require('colors/safe');
-var readlineSync = require('readline-sync');
-var exec = require('child_process').exec;
-var child;
+const colors = require('colors/safe');
+const readlineSync = require('readline-sync');
+const exec = require('child_process').exec;
+let child;
 
 // Get three properties from the user: username , password and url and project
-//console.log('Enter key e.g. "RAINCATCH-623"');
-var query = function (callback) {
-  var field = '';
-  var value = '';
-  var searchString = '';
-  var yesNo = '';
-  var format;
+
+const query = function (callback) {
+  let field;
+  let value;
+  let searchString = '';
+  let yesNo = '';
+  let format;
   format = readlineSync.question('Enter format either json or csv ,enter for default tsv : ');
   while (yesNo !== 'y') {
     field = readlineSync.question('Enter the field you wish to search for : ');
@@ -40,5 +40,4 @@ var query = function (callback) {
   });
 };
 
-//query();// for testing
 module.exports = query;

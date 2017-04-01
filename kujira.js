@@ -4,7 +4,7 @@
 
 'use strict';
 
-var query = require('./query.js');
+const query = require('./query.js');
 
 query(function () {
   //they should finish in order
