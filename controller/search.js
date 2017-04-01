@@ -25,7 +25,8 @@ router.post('/target', function (req, res) {
 //jira-miner populate takes json input project
 router.post('/populate', function (req, res) {
   // execute jira-miner target to point at the source
-  console.log(req.body);
+  console.log(req.body.project);
+  console.log('jira-miner populate "project in (' + req.body.project + ')"');
   child = exec('jira-miner populate "project in (' + req.body.project + ')"', function (error, stdout, stderr) {
     res.status(200).json(stdout);
     console.log('stderr: ' + stderr);
