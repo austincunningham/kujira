@@ -34,7 +34,7 @@ const query = function (callback) {
     }
 
     //checks standard out is present and the callback is a function
-    if (typeof callback === 'function' && stdout != false) {
+    if (typeof callback === 'function' && stdout !== false) {
       callback();
     }
   });
