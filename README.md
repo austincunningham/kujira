@@ -38,7 +38,8 @@ To get started you'll need to have the following requirements installed
 
     node setup
     node kujira
-    
+   
+Initial setup run 
 ```bash
 $ node setup
 Enter username, password and url e.g. "issues.jboss.org"
@@ -56,6 +57,7 @@ lly targeted JIRA'
  project: RAINCATCH
 ````
 
+Stand alone query run 
 ```bash
 $ node kujira
 Enter format either json or csv ,enter for default tsv : json
