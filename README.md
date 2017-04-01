@@ -40,7 +40,7 @@ To get started you'll need to have the following requirements installed
     node kujira
     
 ```bash
-$ node target
+$ node setup
 Enter username, password and url e.g. "issues.jboss.org"
 -->:Enter your Jira Username: enterUserName
 -->:Enter your Jira password: *********    
@@ -51,11 +51,16 @@ Command-line input received:
  url: https://issues.jboss.org
 stdout: { url: 'https://issues.jboss.org', user: 'enterUserName' } 'Successfu
 lly targeted JIRA'
-
-````
-
-````bash
-$ node populate    
+   
 -->:Enter the project name e.g. "RHMAP or RAINCATCH": RAINCATCH
  project: RAINCATCH
 ````
+
+```bash
+$ node kujira
+Enter format either json or csv ,enter for default tsv : json
+Enter the field you wish to search for : Assignee
+Enter the value you wish to search for : "Austin Cunningham"
+Enter "y" quit or enter to continue :
+
+```
