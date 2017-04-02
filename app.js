@@ -28,7 +28,12 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
-app.use(session({secret:'thisShouldBeLongAndSecret'}));
+app.use(session({secret:'thisShouldBeLongAndSecret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {secure: true},
+  maxAge: 3600000
+}));
 
 
 // See the Controller for routes,
