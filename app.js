@@ -25,24 +25,17 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
-// See the api Controller for `/api` routes
+//app.set('views','./views');
+// See the Controller for routes,
 app.use('/api', apiController);
-app.use('/accounts',accountsController);
+app.use('/',accountsController);
 
 
 app.engine('hbs', expressHbs({extname:'hbs',
   defaultLayout:'layout.hbs',
-  relativeTo: __dirname,
-  path: './views',
-  layoutPath: './views/layout',
-  partialsPath: './views/partials',
-  layout: true,
-  isCached: false}));
+  relativeTo: __dirname}));
 app.set('view engine', 'hbs');
 
-app.get('/',function(req,res){
-  res.render('index')
-});
 
 // Only listen when app.js is run - acceptance tests will listen on another port
 app.listen(8000, function () {
