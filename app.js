@@ -7,7 +7,9 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
-const searchController = require('./controller/search');
+const expressHbs = require('express-handlebars');
+const apiController = require('./controller/api');
+const accountsController = require('./controller/accounts');
 
 // Added to parse json files that are posted or put
 const bodyParser = require('body-parser');
@@ -16,12 +18,31 @@ const app = express();
 
 // Add middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
 app.use(cors());
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
-// See the search Controller for `/search` routes
-app.use('/search', searchController);
+// See the api Controller for `/api` routes
+app.use('/api', apiController);
+app.use('/accounts',accountsController);
+
+
+app.engine('hbs', expressHbs({extname:'hbs',
+  defaultLayout:'layout.hbs',
+  relativeTo: __dirname,
+  path: './views',
+  layoutPath: './views/layout',
+  partialsPath: './views/partials',
+  layout: true,
+  isCached: false}));
+app.set('view engine', 'hbs');
+
+app.get('/',function(req,res){
+  res.render('index')
+});
 
 // Only listen when app.js is run - acceptance tests will listen on another port
 app.listen(8000, function () {

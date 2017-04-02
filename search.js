@@ -3,8 +3,8 @@
  */
 
 //search that finds issue type == Bug and takes a command line argument
-// query search.js --key=RAINCATCH-623 --json
-// jira-miner query search.js --issuetype=Bug
+// query api.js --key=RAINCATCH-623 --json
+// jira-miner query api.js --issuetype=Bug
 
 const search = [
   ctx => {
