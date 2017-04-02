@@ -46,9 +46,9 @@ router.get('/home', function (req, res) {
 
 });
 
+// /login if successful applies the current username to the cookie
 router.post('/login', function(req, res){
   sess = req.session;
-
   child = exec('jira-miner target https://' + req.body.url + ' --user ' + req.body.username +
       ' --password ' + req.body.password, function (error, stdout, stderr) {
     if (stdout.indexOf('Successfully targeted JIRA') >= 0 ){
