@@ -60,4 +60,18 @@ router.post('/login', function(req, res){
   });
 });
 
+// /home post project
+router.post('/home', function(req, res){
+// execute jira-miner target to point at the source
+  sess=req.session;
+  //console.log(req.body.project);
+  //console.log('jira-miner populate "project in (' + req.body.project + ')"');
+  child = exec('jira-miner populate "project in (' + req.body.project + ')"', function (error, stdout, stderr) {
+    if(sess.username){
+      res.render('home',{title: 'Kujira Home', message: stdout,error: stderr });
+    }
+
+  });
+});
+
 module.exports = router;
