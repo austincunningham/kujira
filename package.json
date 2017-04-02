@@ -14,6 +14,7 @@
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
     "fs": "0.0.1-security",
     "jira-miner": "^0.3.3",
     "path": "^0.12.7",

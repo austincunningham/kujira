@@ -8,6 +8,9 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const expressHbs = require('express-handlebars');
+const session = require('express-session');
+
+
 const apiController = require('./controller/api');
 const accountsController = require('./controller/accounts');
 
@@ -25,7 +28,9 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
-//app.set('views','./views');
+app.use(session({secret:'thisShouldBeLongAndSecret'}));
+
+
 // See the Controller for routes,
 app.use('/api', apiController);
 app.use('/',accountsController);
