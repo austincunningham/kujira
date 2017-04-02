@@ -44,12 +44,15 @@ router.post('/query', function (req, res){
     searchString += '--' + req.body[i].field +'='+ req.body[i].value +' ';
     console.log(searchString);
   }
-  child = exec('jira-miner query search ' + searchString + ' --json', function (error, stdout, stderr) {
+  console.log('jira-miner query search ' + searchString + '--json')
+  child = exec('jira-miner query search ' + searchString + '--json', function (error, stdout, stderr) {
+    stdout = JSON.parse(stdout);
     res.status(200).json(stdout);
     console.log('stderr: ' + stderr);
     if (error !== null) {
       console.log('exec error: ' + error);
     }
+
   });
 });
 
