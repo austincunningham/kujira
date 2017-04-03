@@ -14,6 +14,8 @@ let sess;
 //jira-miner target takes json input url,username and password
 // open route welcome screen
 router.get('/', function (req, res) {
+  sess = req.session;
+  sess.username;
   res.render('index',{title: 'Welcome to Kujira'});
 });
 
@@ -37,7 +39,6 @@ router.get('/logout', function(req, res){
 
 // /home check session username and allow access, cookie invalid deny access
 router.get('/home', function (req, res) {
-  sess=req.session;
   if(sess.username){
     res.render('home',{title: 'Kujira Home'});
   } else {
@@ -46,9 +47,19 @@ router.get('/home', function (req, res) {
 
 });
 
+// /query check session username and allow access, cookie invalid deny access
+router.get('/query', function (req, res) {
+  //sess=req.session;
+  if(sess.username){
+    res.render('query',{title: 'Kujira Query'});
+  } else {
+    res.render('index',{title:'Welcome to Kujira'})
+  }
+
+});
+
 // /login if successful applies the current username to the cookie
 router.post('/login', function(req, res){
-  sess = req.session;
   child = exec('jira-miner target https://' + req.body.url + ' --user ' + req.body.username +
       ' --password ' + req.body.password, function (error, stdout, stderr) {
     if (stdout.indexOf('Successfully targeted JIRA') >= 0 ){
@@ -63,14 +74,15 @@ router.post('/login', function(req, res){
 // /home post project
 router.post('/home', function(req, res){
 // execute jira-miner target to point at the source
-  sess=req.session;
-  //console.log(req.body.project);
-  //console.log('jira-miner populate "project in (' + req.body.project + ')"');
   child = exec('jira-miner populate "project in (' + req.body.project + ')"', function (error, stdout, stderr) {
-    if(sess.username){
-      res.render('home',{title: 'Kujira Home', message: stdout,error: stderr });
+    console.log(stdout);
+    let message;
+    if(stdout.indexOf('Updated and stored collection') >= 0 ){
+      message = 'Connected to '+ req.body.project +' project';
+    }else{
+      message = 'Failed to connect to '+req.body.project +' project';
     }
-
+    res.render('home',{title: 'Kujira Home', message:message});
   });
 });
 
