@@ -6,6 +6,7 @@
 
 const express = require('express');
 const router = express.Router();
+const fields = require('../fixtures/fields.json');
 const exec = require('child_process').exec;
 const session = require('express-session');
 let child;
@@ -49,9 +50,9 @@ router.get('/home', function (req, res) {
 
 // /query check session username and allow access, cookie invalid deny access
 router.get('/query', function (req, res) {
-  //sess=req.session;
+  console.log(fields);
   if(sess.username){
-    res.render('query',{title: 'Kujira Query'});
+    res.render('query',{title: 'Kujira Query',fields: fields});
   } else {
     res.render('index',{title:'Welcome to Kujira'})
   }

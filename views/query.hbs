@@ -8,19 +8,27 @@
         <div class="two fields">
             <div class="field">
                 <div class="column">
-                    <div class="ui selection dropdown" id="deleteUser">
+                    <div class="ui selection dropdown" id="field">
                         <input name="field" type="hidden">
                         <div class="default text">Select Field</div>
                         <i class="dropdown icon"></i>
                         <div class="menu" >
-                            {{#each user}}
-                                <div class="item userlist" data-value={{email}}>{{email}}</div>
+                            {{#each fields}}
+                                <div class="item field" data-value={{id}}>{{name}}</div>
                             {{/each}}
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="field">
+                <div class="column">
+                    <div class="ui right icon input field">
+                        <input placeholder="Field Value" type="text" name="value" id="id" class="search-input">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="ui blue submit button">Select Field <i class="search icon"></i></button>
+        <button class="ui blue submit button">Build Query<i class="search icon"></i></button>
     </section>
 </section>
