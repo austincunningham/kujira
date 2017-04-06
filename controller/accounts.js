@@ -45,7 +45,6 @@ router.get('/home', function (req, res) {
   } else {
     res.render('index',{title:'Welcome to Kujira'})
   }
-
 });
 
 // /query check session username and allow access, cookie invalid deny access
@@ -84,6 +83,20 @@ router.post('/home', function(req, res){
       message = 'Failed to connect to '+req.body.project +' project';
     }
     res.render('home',{title: 'Kujira Home', message:message});
+  });
+});
+
+// /home post project
+router.post('/query', function(req, res){
+// execute jira-miner target to point at the source
+  console.log(req.body)
+  let searchString = '--'+ req.body.field +'='+ req.body.value +' ';
+  child = exec('jira-miner query search ' + searchString +' --json', function (error, stdout, stderr) {
+    console.log(stdout);
+    stdout = JSON.stringify(stdout , null, 4);
+    //stdout = JSON.parse(stdout);
+    //stderr = JSON.parse(stderr);
+    res.render('query',{title: 'Kujira Query', message: stdout, error: stderr});
   });
 });
 

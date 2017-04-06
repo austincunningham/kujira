@@ -9,7 +9,6 @@
 const search = [
   ctx => {
     const args = ctx.args;
-    //console.log(ctx.args);
     return ctx.collection.chain()
       .where(issue=> {
         if (args.issuetype) {
