@@ -31,8 +31,13 @@
                             <i class="search icon"></i>
                         </div>
                     </div>
+                    <h3>{{search}}</h3>
                 </div>
-                <p>{{message}}{{error}}</p>
+                <p>{{#each message}}
+                        {{key}}
+                    {{/each}}
+                    {{error}}
+                </p>
             </div>
             <button class="ui blue submit button">Build Query<i class="search icon"></i></button>
         </form>

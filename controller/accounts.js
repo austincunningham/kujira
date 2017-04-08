@@ -11,6 +11,7 @@ const exec = require('child_process').exec;
 const session = require('express-session');
 let child;
 let sess;
+let searchString = ' ';
 
 //jira-miner target takes json input url,username and password
 // open route welcome screen
@@ -40,6 +41,7 @@ router.get('/logout', function(req, res){
 
 // /home check session username and allow access, cookie invalid deny access
 router.get('/home', function (req, res) {
+  let searchString = ' ';
   if(sess.username){
     res.render('home',{title: 'Kujira Home'});
   } else {
@@ -49,7 +51,6 @@ router.get('/home', function (req, res) {
 
 // /query check session username and allow access, cookie invalid deny access
 router.get('/query', function (req, res) {
-  console.log(fields);
   if(sess.username){
     res.render('query',{title: 'Kujira Query',fields: fields});
   } else {
@@ -89,14 +90,18 @@ router.post('/home', function(req, res){
 // /home post project
 router.post('/query', function(req, res){
 // execute jira-miner target to point at the source
-  console.log(req.body)
-  let searchString = '--'+ req.body.field +'='+ req.body.value +' ';
+  searchString += '--'+ req.body.field +'='+ req.body.value +' ';
   child = exec('jira-miner query search ' + searchString +' --json', function (error, stdout, stderr) {
     console.log(stdout);
-    stdout = JSON.stringify(stdout , null, 4);
-    //stdout = JSON.parse(stdout);
-    //stderr = JSON.parse(stderr);
-    res.render('query',{title: 'Kujira Query', message: stdout, error: stderr});
+    //stdout = JSON.stringify(stdout);
+    stdout = JSON.parse(stdout);
+    stderr = JSON.stringify(stderr);
+    res.render('query',{
+      title: 'Kujira Query',
+      message: stdout,
+      error: stderr,
+      search: searchString,
+      fields: fields});
   });
 });
 
