@@ -182,7 +182,7 @@
     }
   },
   {
-    "id": "issuekey",
+    "id": "key",
     "name": "Key",
     "custom": false,
     "orderable": false,
