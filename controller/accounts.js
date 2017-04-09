@@ -91,15 +91,15 @@ router.post('/home', function(req, res){
 router.post('/query', function(req, res){
 // execute jira-miner target to point at the source
   searchString += '--'+ req.body.field +'='+ req.body.value +' ';
-  child = exec('jira-miner query search ' + searchString +' --json', function (error, stdout, stderr) {
-    console.log(stdout);
+  child = exec('jira-miner query search.js ' + searchString +' --json', function (error, stdout, stderr) {
+    console.log(stdout, error, stderr);
     //stdout = JSON.stringify(stdout);
     stdout = JSON.parse(stdout);
-    stderr = JSON.stringify(stderr);
+    //stderr = JSON.stringify(stderr);
     res.render('query',{
       title: 'Kujira Query',
       message: stdout,
-      error: stderr,
+      error: { stderr, error },
       search: searchString,
       fields: fields});
   });
