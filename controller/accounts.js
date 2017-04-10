@@ -42,8 +42,8 @@ router.get('/logout', function(req, res){
 // /home check session username and allow access, cookie invalid deny access
 router.get('/home', function (req, res) {
   //let searchString = ' ';
-  if(!req.session.username){
-    res.render('index',{title:'Welcome to Kujira'});
+  if(!sess || !sess.username){
+    res.redirect('index',{title:'Welcome to Kujira'});
   } else {
     res.render('home',{title: 'Kujira Home'});
   }
@@ -51,8 +51,8 @@ router.get('/home', function (req, res) {
 
 // /query check session username and allow access, cookie invalid deny access
 router.get('/query', function (req, res) {
-  if(!req.session.username){
-    res.render('index',{title:'Welcome to Kujira'});
+  if(!sess || !sess.username){
+    res.redirect('index',{title:'Welcome to Kujira'});
   } else {
     res.render('query',{title: 'Kujira Query',fields: fields});
   }
@@ -64,6 +64,7 @@ router.post('/login', function(req, res){
   child = exec('jira-miner target https://' + req.body.url + ' --user ' + req.body.username +
       ' --password ' + req.body.password, function (error, stdout, stderr) {
     if (stdout.indexOf('Successfully targeted JIRA') >= 0 ){
+      sess = req.session;
       sess.username = req.body.username;
       res.render('home',{title:'Kujira Home'});
     }else{
