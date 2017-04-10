@@ -3,53 +3,40 @@
  */
 
 'use strict';
-var prompt = require('prompt');
-var colors = require('colors/safe');
-var exec = require('child_process').exec;
-var child;
-
-//validation for prompt see https://www.npmjs.com/package/prompt
-var schema = {
-  properties: {
-    key: {
-      description: colors.blue('Enter the project issue key e.g. "RAINCATCH-623"'),
-      pattern: /^[a-zA-Z0-9._-]+$/,
-      requried: true,
-    },
-    format: {
-      description: colors.blue('Enter format either json or csv ,enter for default tsv'),
-      pattern: /^[a-z]+$/,
-      required: false,
-    },
-  },
-};
-
-// Start the prompt
-
-prompt.start();
-prompt.message = colors.green('-->');
-prompt.delimiter = colors.green(':');
+const colors = require('colors/safe');
+const readlineSync = require('readline-sync');
+const exec = require('child_process').exec;
+let child;
 
 // Get three properties from the user: username , password and url and project
-//console.log('Enter key e.g. "RAINCATCH-623"');
-var query = function (callback) {
-  prompt.get(schema, function (err, result) {
 
-    // use jira-miner query to access a local search file --key=RAINCATCH-623
-    child = exec('jira-miner query search --key=' + result.key + ' --' + result.format,
-    function (error, stdout, stderr) {
-      console.log('stdout: ' + stdout);
-      console.log('stderr: ' + stderr);
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      }
+const query = function (callback) {
+  let field;
+  let value;
+  let searchString = '';
+  let yesNo = '';
+  let format;
+  format = readlineSync.question('Enter format either json or csv ,enter for default tsv : ');
+  while (yesNo !== 'y') {
+    field = readlineSync.question('Enter the field you wish to search for : ');
+    value = readlineSync.question('Enter the value you wish to search for : ');
+    yesNo = readlineSync.question('Enter "y" quit or enter to continue : ');
+    searchString = '--' + field + '=' + value + ' ' + searchString;
+    console.log(yesNo, searchString);
+  }
 
-      //checks standard out is present and the callback is a function
-      if (typeof callback === 'function' && stdout != false) {
-        //prompt.emit('stop');
-        callback();
-      }
-    });
+  child = exec('jira-miner query search ' + searchString + ' --' + format,
+  function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+
+    //checks standard out is present and the callback is a function
+    if (typeof callback === 'function' && stdout !== false) {
+      callback();
+    }
   });
 };
 

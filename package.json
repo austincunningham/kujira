@@ -2,14 +2,23 @@
   "name": "kujira",
   "version": "1.0.0",
   "description": "consume jira-miner npm via cli prompt",
-  "main": "run-jira-miner-cli.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "austincunningham",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "colors": "^1.1.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
+    "fs": "0.0.1-security",
     "jira-miner": "^0.3.3",
-    "prompt": "^1.0.0"
+    "path": "^0.12.7",
+    "prompt": "^1.0.0",
+    "readline-sync": "^1.4.7"
   }
 }

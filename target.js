@@ -2,13 +2,12 @@
  * Created by acunningham on 20/03/17.
  */
 'use strict';
-var prompt = require('prompt');
-var colors = require('colors/safe');
-var populate = require('./populate.js');
-var exec = require('child_process').exec;
-var child;
+const prompt = require('prompt');
+const colors = require('colors/safe');
+const exec = require('child_process').exec;
+let child;
 
-var schema = {
+const schema = {
   properties: {
     username: {
       description: colors.blue('Enter your Jira Username'),
@@ -18,7 +17,7 @@ var schema = {
     },
     password: {
       description: colors.blue('Enter your Jira password'),
-      pattern: /^[a-zA-Z0-9]+$/,
+      pattern: /^[a-zA-Z0-9._-]+$/,
       hidden: true,
       message: 'Invalid characters in password',
       replace: '*',
@@ -41,7 +40,7 @@ prompt.delimiter = colors.green(':');
 // Get three properties from the user: username , password and url and project
 console.log('Enter username, password and url e.g. "issues.jboss.org"');
 
-var target = function (callback) {
+let target = function (callback) {
 
   prompt.get(schema, function (err, result) {
     // Log the results.
@@ -61,8 +60,7 @@ var target = function (callback) {
       }
 
       //checks standard out is present and the callback is a function
-      if (typeof callback === 'function' && stdout != false) {
-        //prompt.emit('stop');
+      if (typeof callback === 'function' && stdout !== false) {
         callback();
       }
     });

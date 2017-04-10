@@ -1,0 +1,45 @@
+{{> mainmenu }}
+
+<h1>Query Kujira</h1>
+
+<section class="four wide column">
+    <h3 class="ui dividing header">Select Jira Field</h3>
+    <section class="ui rasied form segment user">
+        <div class="two fields">
+            <aside class="six wide column">
+                <img src="images/kujira.png" class="ui small image">
+            </aside>
+            <form action="/query" method="POST">
+                <div class="field">
+                    <div class="column">
+                        <div class="ui selection dropdown" id="field">
+                            <input name="field" type="hidden">
+                            <div class="default text">Select Field</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu" >
+                                {{#each fields}}
+                                    <div class="item field" data-value={{id}}>{{name}}</div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="column">
+                        <div class="ui right icon input field">
+                            <input placeholder="Field Value" type="text" name="value" id="value" class="search-input">
+                            <i class="search icon"></i>
+                        </div>
+                    </div>
+                    <h3>{{search}}</h3>
+                </div>
+                <p>{{#each message}}
+                        {{key}}
+                    {{/each}}
+                    {{error}}
+                </p>
+            </div>
+            <button class="ui blue submit button">Build Query<i class="search icon"></i></button>
+        </form>
+    </section>
+</section>

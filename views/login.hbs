@@ -1,0 +1,28 @@
+{{> welcomemenu }}
+
+<section class="ui raised segment">
+    <div class="ui grid">
+        <aside class="ui six wide column">
+            <img src="images/kujira.png" class="ui medium image">
+        </aside>
+        <div class="ui ten wide column fluid form">
+            <div class="ui stacked segment">
+                <form action="/login" method="POST">
+                    <h3 class="ui header">Log-in</h3>
+                    <div class="field">
+                        <label>Email</label> <input placeholder="Jira username" type="text"
+                                                    name="username">
+                    </div>
+                    <div class="field">
+                        <label>Password</label> <input placeholder="***********" type="password" name="password">
+                    </div>
+                    <div class="field">
+                        <label>URL</label> <input placeholder="issues.jboss.org" type="text" name="url">
+                    </div>
+                    <button class="ui blue submit button">Login</button>
+                </form>
+                {{> formerror }}
+            </div>
+        </div>
+    </div>
+</section>

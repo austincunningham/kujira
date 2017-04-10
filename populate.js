@@ -3,15 +3,14 @@
  */
 
 'use strict';
-var prompt = require('prompt');
-var query = require('./query.js');
-var colors = require('colors/safe');
-var exec = require('child_process').exec;
-var child;
+const prompt = require('prompt');
+const colors = require('colors/safe');
+const exec = require('child_process').exec;
+let child;
 
 //validation for prompt see https://www.npmjs.com/package/prompt
 
-var schema = {
+const schema = {
   properties: {
     project: {
       description: colors.blue('Enter the project name e.g. "RHMAP or RAINCATCH"'),
@@ -28,10 +27,9 @@ prompt.start();
 prompt.message = colors.green('-->');
 prompt.delimiter = colors.green(':');
 
-var populate = function (callback) {
+const populate = function (callback) {
 
   // Get three properties from the user: username , password and url and project
-  //console.log('Enter project name  e.g. "RAINCATCH or RHMAP"');
 
   prompt.get(schema, function (error, result) {
     // Log the results.
@@ -47,7 +45,7 @@ var populate = function (callback) {
       }
 
       //checks standard out is present and the callback is a function
-      if (typeof callback === 'function' && stdout != false) {
+      if (typeof callback === 'function' && stdout !== false) {
         callback();
       }
     });
