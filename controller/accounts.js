@@ -43,7 +43,7 @@ router.get('/logout', function(req, res){
 router.get('/home', function (req, res) {
   //let searchString = ' ';
   if(!sess || !sess.username){
-    res.redirect('index',{title:'Welcome to Kujira'});
+    res.redirect('/');
   } else {
     res.render('home',{title: 'Kujira Home'});
   }
@@ -52,7 +52,7 @@ router.get('/home', function (req, res) {
 // /query check session username and allow access, cookie invalid deny access
 router.get('/query', function (req, res) {
   if(!sess || !sess.username){
-    res.redirect('index',{title:'Welcome to Kujira'});
+    res.redirect('/');
   } else {
     res.render('query',{title: 'Kujira Query',fields: fields});
   }
