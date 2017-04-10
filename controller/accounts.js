@@ -41,20 +41,20 @@ router.get('/logout', function(req, res){
 
 // /home check session username and allow access, cookie invalid deny access
 router.get('/home', function (req, res) {
-  let searchString = ' ';
-  if(sess.username){
-    res.render('home',{title: 'Kujira Home'});
+  //let searchString = ' ';
+  if(!req.session.username){
+    res.render('index',{title:'Welcome to Kujira'});
   } else {
-    res.render('index',{title:'Welcome to Kujira'})
+    res.render('home',{title: 'Kujira Home'});
   }
 });
 
 // /query check session username and allow access, cookie invalid deny access
 router.get('/query', function (req, res) {
-  if(sess.username){
-    res.render('query',{title: 'Kujira Query',fields: fields});
+  if(!req.session.username){
+    res.render('index',{title:'Welcome to Kujira'});
   } else {
-    res.render('index',{title:'Welcome to Kujira'})
+    res.render('query',{title: 'Kujira Query',fields: fields});
   }
 
 });
@@ -67,7 +67,7 @@ router.post('/login', function(req, res){
       sess.username = req.body.username;
       res.render('home',{title:'Kujira Home'});
     }else{
-      res.render('login',{title:'Login to Kujira'})
+      res.render('login',{title:'Login to Kujira'});
     }
   });
 });
