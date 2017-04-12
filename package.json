@@ -16,6 +16,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.2",
     "fs": "0.0.1-security",
+    "handlebars": "^4.0.6",
     "jira-miner": "^0.3.3",
     "path": "^0.12.7",
     "prompt": "^1.0.0",
