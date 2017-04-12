@@ -9,6 +9,7 @@ const router = express.Router();
 const fields = require('../fixtures/fields.json');
 const exec = require('child_process').exec;
 const session = require('express-session');
+
 let child;
 let sess;
 let searchString = ' ';
