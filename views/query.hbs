@@ -41,14 +41,11 @@
             <div class="title">
                 <i class="dropdown icon"></i>
                 Results
-                {{#each message}}
-                    {{self}}
-                {{/each}}
             </div>
             <div class="content">
                 <p class="transition hidden">
                 <div class="ui styled accordion">
-                    {{#eachField fields}}
+                    {{#each fields}}
                     <div class="title">
                         <i class="dropdown icon"></i>
                         {{name}}
@@ -56,12 +53,14 @@
                     <div class="content">
                         <p class="transition hidden">
                             {{#each ../message}}
-                                {{key}}
+                                {{lookup this ../name}}<br>
                             {{/each}}
                         </p>
-                    </div>.
-                    {{/eachField}}
+                    </div>
+                    {{/each}}
                 </div>
-            </p>
+                </p>
+            </div>
         </div>
+    </div>
 </section>

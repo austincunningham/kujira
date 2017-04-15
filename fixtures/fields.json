@@ -183,7 +183,7 @@
   },
   {
     "id": "key",
-    "name": "Key",
+    "name": "key",
     "custom": false,
     "orderable": false,
     "navigable": true,
