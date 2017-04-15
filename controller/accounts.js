@@ -100,9 +100,6 @@ router.post('/query', function(req, res){
   }
   child = exec('jira-miner query search.js ' + searchString +' --json', function (error, stdout, stderr) {
     console.log(stdout, error, stderr);
-    //stdout = JSON.stringify(stdout);
-
-    //stderr = JSON.stringify(stderr);
     if(error){
       res.render('query', {
         title: 'Kujira Query Error',
