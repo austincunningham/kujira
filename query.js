@@ -25,7 +25,7 @@ const query = function (callback) {
     console.log(yesNo, searchString);
   }
 
-  child = exec('jira-miner query search ' + searchString + ' --' + format,
+  child = exec('jira-miner query search ' + searchString + ' --' + format,{maxBuffer: 1024 * 20000},
   function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
