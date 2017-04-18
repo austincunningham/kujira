@@ -13,7 +13,7 @@
 
     <link rel="shortcut icon" type="image/png" href="images/kujira.jpg">
     <script type="text/javascript" src="/js/canvasjs.min.js"></script>
-    <script type="text/javascript" src="/js/charts.js"></script>
+
 </head>
 <body>
 <section class="ui container">
@@ -22,6 +22,7 @@
 <script>
     $(document).ready(function () {
         $('.ui.dropdown').dropdown({ on: 'hover' });
+        $('.ui.sidebar').sidebar('toggle');
         $('.ui.accordion').first().accordion();
     });
 </script>

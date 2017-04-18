@@ -42,6 +42,43 @@ router.get('/graphs', function(req, res){
   }
 });
 
+router.get('/averageage', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('averageage', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message
+    });
+  }
+});
+
+router.get('/velocity', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('velocity', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message
+    });
+  }
+});
+
+router.get('/createdResolved', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('createdResolved', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message
+    });
+  }
+});
+
+
 
 // /logout destroy session cookie and redirect to welcome
 router.get('/logout', function(req, res){
