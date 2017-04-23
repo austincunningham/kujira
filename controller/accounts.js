@@ -9,6 +9,8 @@ const router = express.Router();
 const fields = require('../fixtures/fields.json');
 const exec = require('child_process').exec;
 const session = require('express-session');
+const Handlebars = require('handlebars');
+
 let child;
 let sess;
 let searchString = ' ';
@@ -84,14 +86,18 @@ router.post('/home', function(req, res){
     }else{
       message = 'Failed to connect to '+req.body.project +' project';
     }
-    res.render('home',{title: 'Kujira Home', message:message});
+    res.render('home',{title: 'Kujira Home', message: message});
   });
 });
 
 // /home post project
 router.post('/query', function(req, res){
 // execute jira-miner target to point at the source
-  searchString += '--'+ req.body.field +'='+ req.body.value +' ';
+  if (searchString.indexOf(req.body.value) >= 0){
+    console.log('do nothing');
+  }else {
+    searchString += '--' + req.body.field + '=' + req.body.value + ' ';
+  }
   child = exec('jira-miner query search.js ' + searchString +' --json', function (error, stdout, stderr) {
     console.log(stdout, error, stderr);
     //stdout = JSON.stringify(stdout);
@@ -115,6 +121,18 @@ router.post('/query', function(req, res){
       });
     }
   });
+});
+
+
+// handlebars helper
+Handlebars.registerHelper('eachField', function(context, options) {
+  var ret = ""
+
+  for(var i=0, j=context.length; i<j; i++) {
+    ret = ret + options.fn(context[i]);
+  }
+
+  return ret;
 });
 
 module.exports = router;

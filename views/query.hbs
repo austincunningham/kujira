@@ -4,7 +4,7 @@
 
 <section class="four wide column">
     <h3 class="ui dividing header">Select Jira Field</h3>
-    <section class="ui rasied form segment user">
+    <div class="ui rasied form segment user">
         <div class="two fields">
             <aside class="six wide column">
                 <img src="images/kujira.png" class="ui small image">
@@ -31,15 +31,36 @@
                             <i class="search icon"></i>
                         </div>
                     </div>
-                    <h3>{{search}}</h3>
+                    <h4>{{search}}</h4>
                 </div>
-                <p>{{#each message}}
-                        {{key}}
-                    {{/each}}
-                    {{error}}
-                </p>
-            </div>
             <button class="ui blue submit button">Build Query<i class="search icon"></i></button>
         </form>
     </section>
+    <div class="ui raised segment">
+        <div class="ui styled accordion">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Results
+            </div>
+            <div class="content">
+                <p class="transition hidden">
+                <div class="ui styled accordion">
+                    {{#each fields}}
+                    <div class="title">
+                        <i class="dropdown icon"></i>
+                        {{name}}
+                    </div>
+                    <div class="content">
+                        <p class="transition hidden">
+                            {{#each ../message}}
+                                {{lookup this ../name}}<br>
+                            {{/each}}
+                        </p>
+                    </div>
+                    {{/each}}
+                </div>
+                </p>
+            </div>
+        </div>
+    </div>
 </section>
