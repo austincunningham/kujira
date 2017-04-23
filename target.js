@@ -52,7 +52,7 @@ let target = function (callback) {
 
     // execute jira-miner target to point at the source
     child = exec('jira-miner target https://' + result.url + ' --user ' + result.username +
-        ' --password ' + result.password, function (error, stdout, stderr) {
+        ' --password ' + result.password,{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
       console.log('stdout: ' + stdout);
       console.log('stderr: ' + stderr);
       if (error !== null) {

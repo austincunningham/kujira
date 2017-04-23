@@ -65,7 +65,7 @@ prompt.get(schema, function (err, result) {
 
   // execute jira-miner target to point at the source
   child = exec('jira-miner target https://' + result.url + ' --user ' + result.username +
-      ' --password ' + result.password, function (error, stdout, stderr) {
+      ' --password ' + result.password,{maxBuffer: 1024 * 9000}, function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
     if (error !== null) {
@@ -73,7 +73,7 @@ prompt.get(schema, function (err, result) {
     }
 
     // pull data from the target with populate, to populate local loki db
-  }).then = exec('jira-miner populate "project in (' + result.project + ')"',
+  }).then = exec('jira-miner populate "project in (' + result.project + ')"',{maxBuffer: 1024 * 9000},
   function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
@@ -82,7 +82,7 @@ prompt.get(schema, function (err, result) {
     }
 
     // use jira-miner query to access a local search file
-  }).then = exec('jira-miner query search --key=RAINCATCH-623 --' + result.format,
+  }).then = exec('jira-miner query search --key=RAINCATCH-623 --' + result.format,{maxBuffer: 1024 * 20000},
   function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);

@@ -14,12 +14,12 @@ const Handlebars = require('handlebars');
 let child;
 let sess;
 let searchString = ' ';
+let message;
 
 //jira-miner target takes json input url,username and password
 // open route welcome screen
 router.get('/', function (req, res) {
   sess = req.session;
-  sess.username;
   res.render('index',{title: 'Welcome to Kujira'});
 });
 
@@ -29,6 +29,19 @@ router.get('/login', function(req, res){
     title: 'Login to Kujira'
   });
 });
+
+router.get('/graphs', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('graphs', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message
+    });
+  }
+});
+
 
 // /logout destroy session cookie and redirect to welcome
 router.get('/logout', function(req, res){
@@ -43,7 +56,6 @@ router.get('/logout', function(req, res){
 
 // /home check session username and allow access, cookie invalid deny access
 router.get('/home', function (req, res) {
-  //let searchString = ' ';
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
@@ -64,13 +76,13 @@ router.get('/query', function (req, res) {
 // /login if successful applies the current username to the cookie
 router.post('/login', function(req, res){
   child = exec('jira-miner target https://' + req.body.url + ' --user ' + req.body.username +
-      ' --password ' + req.body.password, function (error, stdout, stderr) {
+      ' --password ' + req.body.password,{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
     if (stdout.indexOf('Successfully targeted JIRA') >= 0 ){
       sess = req.session;
       sess.username = req.body.username;
       res.render('home',{title:'Kujira Home'});
     }else{
-      res.render('login',{title:'Login to Kujira'});
+      res.render('login',{title:'Login to Kujira', error: error, stderr: stderr});
     }
   });
 });
@@ -78,13 +90,12 @@ router.post('/login', function(req, res){
 // /home post project
 router.post('/home', function(req, res){
 // execute jira-miner target to point at the source
-  child = exec('jira-miner populate "project in (' + req.body.project + ')"', function (error, stdout, stderr) {
+  child = exec('jira-miner populate "project in (' + req.body.project + ')"',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
     console.log(stdout);
-    let message;
     if(stdout.indexOf('Updated and stored collection') >= 0 ){
       message = 'Connected to '+ req.body.project +' project';
     }else{
-      message = 'Failed to connect to '+req.body.project +' project';
+      message = 'Failed to connect to '+req.body.project +' project' + stderr;
     }
     res.render('home',{title: 'Kujira Home', message: message});
   });
@@ -98,11 +109,8 @@ router.post('/query', function(req, res){
   }else {
     searchString += '--' + req.body.field + '=' + req.body.value + ' ';
   }
-  child = exec('jira-miner query search.js ' + searchString +' --json', function (error, stdout, stderr) {
+  child = exec('jira-miner query search.js ' + searchString +' --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
     console.log(stdout, error, stderr);
-    //stdout = JSON.stringify(stdout);
-
-    //stderr = JSON.stringify(stderr);
     if(error){
       res.render('query', {
         title: 'Kujira Query Error',
@@ -123,16 +131,5 @@ router.post('/query', function(req, res){
   });
 });
 
-
-// handlebars helper
-Handlebars.registerHelper('eachField', function(context, options) {
-  var ret = ""
-
-  for(var i=0, j=context.length; i<j; i++) {
-    ret = ret + options.fn(context[i]);
-  }
-
-  return ret;
-});
 
 module.exports = router;
