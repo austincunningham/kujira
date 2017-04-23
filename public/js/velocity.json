@@ -1,0 +1,32 @@
+[
+  {
+    "sprint": "IR300 - THIS IS RAINCATCHER",
+    "expected": 8,
+    "actual": 3
+  },
+  {
+    "sprint": "IR300 Umbrella",
+    "expected": 32,
+    "actual": 18
+  },
+  {
+    "sprint": "IR301 - Monorail!",
+    "expected": 39,
+    "actual": 19
+  },
+  {
+    "sprint": "IR301 - Sync Moved Permanently",
+    "expected": 6,
+    "actual": 0
+  },
+  {
+    "sprint": "IR302 - Boulder Breaker",
+    "expected": 57,
+    "actual": 15
+  },
+  {
+    "sprint": "IR302 - Sync Found",
+    "expected": 9,
+    "actual": 1
+  }
+]
