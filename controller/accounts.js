@@ -168,6 +168,8 @@ router.post('/query', function(req, res){
   });
 });
 
+
+//Clear the search on the query page
 router.post('/clearQuery', function(req, res){
   searchString = '';
   if(!sess || !sess.username){
