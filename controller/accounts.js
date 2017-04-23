@@ -168,5 +168,18 @@ router.post('/query', function(req, res){
   });
 });
 
+router.post('/clearQuery', function(req, res){
+  searchString = '';
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('query',{
+      title: 'Kujira Query',
+      fields: fields,
+      search: searchString
+    });
+  }
+});
+
 
 module.exports = router;

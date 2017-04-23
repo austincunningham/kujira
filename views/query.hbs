@@ -31,11 +31,20 @@
                             <i class="search icon"></i>
                         </div>
                     </div>
-                    <h4>{{search}}</h4>
+                    <button class="ui blue submit button">Build Query<i class="search icon"></i></button>
                 </div>
-            <button class="ui blue submit button">Build Query<i class="search icon"></i></button>
-        </form>
+                </form>
+        </div>
+        </div>
     </section>
+    <div class="ui raised segment">
+        <h4>{{search}}
+            <form action="/clearQuery" method="POST">
+                <button class="ui blue submit button">Clear Query<i class="delete icon"></i></button>
+            </form>
+        </h4>
+    </div>
+
     <div class="ui raised segment">
         <div class="ui styled accordion">
             <div class="title">
