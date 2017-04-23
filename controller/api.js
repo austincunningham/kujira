@@ -13,7 +13,7 @@ let child;
 router.post('/target', function (req, res) {
   // execute jira-miner target to point at the source
   child = exec('jira-miner target https://' + req.body.url + ' --user ' + req.body.username +
-      ' --password ' + req.body.password, function (error, stdout, stderr) {
+      ' --password ' + req.body.password,{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
     res.status(200).json(stdout);
     console.log('stderr: ' + stderr);
     if (error !== null) {
@@ -27,7 +27,7 @@ router.post('/populate', function (req, res) {
   // execute jira-miner target to point at the source
   console.log(req.body.project);
   console.log('jira-miner populate "project in (' + req.body.project + ')"');
-  child = exec('jira-miner populate "project in (' + req.body.project + ')"', function (error, stdout, stderr) {
+  child = exec('jira-miner populate "project in (' + req.body.project + ')"',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
     res.status(200).json(stdout);
     console.log('stderr: ' + stderr);
     if (error !== null) {
@@ -44,8 +44,8 @@ router.post('/query', function (req, res){
     searchString += '--' + req.body[i].field +'='+ req.body[i].value +' ';
     console.log(searchString);
   }
-  console.log('jira-miner query search ' + searchString + '--json')
-  child = exec('jira-miner query search ' + searchString + '--json', function (error, stdout, stderr) {
+  console.log('jira-miner query search ' + searchString + '--json');
+  child = exec('jira-miner query search ' + searchString + '--json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
     stdout = JSON.parse(stdout);
     res.status(200).json(stdout);
     console.log('stderr: ' + stderr);
