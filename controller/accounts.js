@@ -10,6 +10,8 @@ const fields = require('../fixtures/fields.json');
 const exec = require('child_process').exec;
 const session = require('express-session');
 const Handlebars = require('handlebars');
+const kujiraDataMiner = require('kujira-data-miner');
+const fs = require('fs');
 
 let child;
 let sess;
@@ -55,6 +57,20 @@ router.get('/averageage', function(req, res){
 });
 
 router.get('/velocity', function(req, res){
+  //delete the existing file
+  fs.unlinkSync('velocity.json'), function(err){
+    if(err){
+      console.log(err)
+    }
+  };
+  //create a new file
+  fs.writeFile('velocity.json', JSON.stringify(req.message, null, 4), function(err){
+    if(err){
+      console.log(err);
+    }else {
+      console.log('Success');
+    }
+  });
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
