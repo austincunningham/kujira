@@ -183,5 +183,29 @@ router.post('/clearQuery', function(req, res){
   }
 });
 
+//Find all project data on query page
+router.post('/allQuery', function(req, res){
+  child = exec('jira-miner query search.js --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
+    console.log(stdout, error, stderr);
+    if(error){
+      res.render('query', {
+        title: 'Kujira Query Error',
+        error: stderr,
+        search: searchString,
+        fields: fields
+      });
+    } else {
+      stdout = JSON.parse(stdout);
+      res.render('query', {
+        title: 'Kujira Query',
+        message: stdout,
+        error: stderr,
+        search: searchString,
+        fields: fields
+      });
+    }
+  });
+});
+
 
 module.exports = router;
