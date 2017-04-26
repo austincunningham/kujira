@@ -31,11 +31,24 @@
                             <i class="search icon"></i>
                         </div>
                     </div>
-                    <h4>{{search}}</h4>
+                    <button class="ui blue submit button">Build Query<i class="search icon"></i></button>
                 </div>
-            <button class="ui blue submit button">Build Query<i class="search icon"></i></button>
-        </form>
+                </form>
+            <form action="/allQuery" method="POST">
+                <h4>
+                    <button class="ui blue submit button">Find All Project Data <i class="world icon"></i></button>
+                </h4>
+            </form>
+        </div>
+        </div>
     </section>
+    <div class="ui raised segment">
+        <form action="/clearQuery" method="POST">
+             <h4>{{search}}
+                <button class="ui blue submit button">Clear Query<i class="delete icon"></i></button>
+             </h4>
+        </form>
+    </div>
     <div class="ui raised segment">
         <div class="ui styled accordion">
             <div class="title">

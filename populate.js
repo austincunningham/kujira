@@ -36,7 +36,7 @@ const populate = function (callback) {
     console.log(' project: ' + result.project);
 
     // pull data from the target with populate, to populate local loki db
-    child = exec('jira-miner populate "project in (' + result.project + ')"',
+    child = exec('jira-miner populate "project in (' + result.project + ')"',{maxBuffer: 1024 * 20000},
     function (error, stdout, stderr) {
       console.log('stdout: ' + stdout);
       console.log('stderr: ' + stderr);
