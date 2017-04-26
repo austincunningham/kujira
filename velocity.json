@@ -1,0 +1,132 @@
+[
+    {
+        "sprint": "IR298 Reservoir Sync Errors",
+        "expected": 36,
+        "actual": 36
+    },
+    {
+        "sprint": "IR274",
+        "expected": 8,
+        "actual": 0
+    },
+    {
+        "sprint": "IR272",
+        "expected": 20,
+        "actual": 0
+    },
+    {
+        "sprint": "IR271",
+        "expected": 28,
+        "actual": 0
+    },
+    {
+        "sprint": "IR270",
+        "expected": 23,
+        "actual": 0
+    },
+    {
+        "sprint": "IR269",
+        "expected": 3,
+        "actual": 0
+    },
+    {
+        "sprint": "IR293 Fire Hose Testing",
+        "expected": 36,
+        "actual": 16
+    },
+    {
+        "sprint": "IR303 - RMAD Icicle",
+        "expected": 54,
+        "actual": 19
+    },
+    {
+        "sprint": "IR301 - Sync Moved Permanently",
+        "expected": 6,
+        "actual": 0
+    },
+    {
+        "sprint": "IR301 - Monorail!",
+        "expected": 89,
+        "actual": 42
+    },
+    {
+        "sprint": "IR300 Umbrella",
+        "expected": 103,
+        "actual": 62
+    },
+    {
+        "sprint": "IR299 - RaincatchingSync",
+        "expected": 10,
+        "actual": 0
+    },
+    {
+        "sprint": "IR299 RMAD 3.16.0 Testing",
+        "expected": 50,
+        "actual": 50
+    },
+    {
+        "sprint": "IR302 - Boulder Breaker",
+        "expected": 83,
+        "actual": 73
+    },
+    {
+        "sprint": "IR297 Reservoir 1",
+        "expected": 65,
+        "actual": 32
+    },
+    {
+        "sprint": "IR294 More Sync Testing",
+        "expected": 70,
+        "actual": 23
+    },
+    {
+        "sprint": "IR300 - THIS IS RAINCATCHER",
+        "expected": 26,
+        "actual": 21
+    },
+    {
+        "sprint": "IR292 - Reactions to vote",
+        "expected": 39,
+        "actual": 34
+    },
+    {
+        "sprint": "IR290 Raining Forms",
+        "expected": 57,
+        "actual": 44
+    },
+    {
+        "sprint": "IR302 - Sync Found",
+        "expected": 12,
+        "actual": 12
+    },
+    {
+        "sprint": "IR278",
+        "expected": 13,
+        "actual": 0
+    },
+    {
+        "sprint": "IR289 RMAD Bring The Raincatch",
+        "expected": 10,
+        "actual": 5
+    },
+    {
+        "sprint": "IR286 RMAD More Loggin",
+        "expected": 3,
+        "actual": 0
+    },
+    {
+        "sprint": "IR285 Mongo & Logging",
+        "expected": 18,
+        "actual": 0
+    },
+    {
+        "sprint": "IR303 - See other Sync",
+        "expected": 0,
+        "actual": 0
+    },
+    {
+        "sprint": "LG Test Sprint IGNORE",
+        "expected": 13,
+        "actual": 13
+    }
+]

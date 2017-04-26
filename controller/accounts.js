@@ -16,7 +16,7 @@ const fs = require('fs');
 let child;
 let sess;
 let searchString = ' ';
-let message;
+let message = {};
 
 //jira-miner target takes json input url,username and password
 // open route welcome screen
@@ -57,14 +57,10 @@ router.get('/averageage', function(req, res){
 });
 
 router.get('/velocity', function(req, res){
-  //delete the existing file
-  fs.unlinkSync('velocity.json'), function(err){
-    if(err){
-      console.log(err)
-    }
-  };
+  //change the message to velocity data with kujira-data-miner npm
+  let velocity = kujiraDataMiner.velocity(message);
   //create a new file
-  fs.writeFile('velocity.json', JSON.stringify(req.message, null, 4), function(err){
+  fs.writeFile('velocity.json', JSON.stringify(velocity, null, 4), function(err){
     if(err){
       console.log(err);
     }else {
@@ -164,6 +160,7 @@ router.post('/query', function(req, res){
   }
   child = exec('jira-miner query search.js ' + searchString +' --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
     console.log(stdout, error, stderr);
+    message = stdout;
     if(error){
       res.render('query', {
         title: 'Kujira Query Error',
@@ -203,6 +200,7 @@ router.post('/clearQuery', function(req, res){
 router.post('/allQuery', function(req, res){
   child = exec('jira-miner query search.js --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
     console.log(stdout, error, stderr);
+
     if(error){
       res.render('query', {
         title: 'Kujira Query Error',
@@ -212,6 +210,7 @@ router.post('/allQuery', function(req, res){
       });
     } else {
       stdout = JSON.parse(stdout);
+      message = stdout;
       res.render('query', {
         title: 'Kujira Query',
         message: stdout,
