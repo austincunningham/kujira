@@ -28,12 +28,12 @@ window.onload = function () {
     function renderPoints(velocity){
       for (let i = 0 ;i < velocity.length; i++) {
         chart.options.data[0].dataPoints.push({
-          x: i+1,
+          x: i,
           y: velocity[i].expected,
           label: "Expected "+velocity[i].sprint,
         });
         chart.options.data[1].dataPoints.push({
-          x: i+1,
+          x: i,
           y: velocity[i].actual,
           label: " Actual "+velocity[i].sprint,
         });
