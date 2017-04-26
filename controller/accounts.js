@@ -60,7 +60,7 @@ router.get('/velocity', function(req, res){
   //change the message to velocity data with kujira-data-miner npm
   let velocity = kujiraDataMiner.velocity(message);
   //create a new file
-  fs.writeFile('velocity.json', JSON.stringify(velocity, null, 4), function(err){
+  fs.writeFile('./public/js/velocity.json', JSON.stringify(velocity, null, 4), function(err){
     if(err){
       console.log(err);
     }else {
