@@ -56,6 +56,7 @@ router.get('/averageage', function(req, res){
   }
 });
 
+
 router.get('/velocity', function(req, res){
   //change the message to velocity data with kujira-data-miner npm
   let velocity = kujiraDataMiner.velocity(message);
