@@ -32,6 +32,7 @@ router.get('/login', function(req, res){
   });
 });
 
+//this renders burndown on load
 router.get('/graphs', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
@@ -44,6 +45,38 @@ router.get('/graphs', function(req, res){
   }
 });
 
+// post sprint name to change the data going to the graph
+router.post('/burndown', function(req, res){
+  console.log(req.body.sprint);
+  let burndown;
+  let error;
+  //wasn't failing gracefully when typo in sprint name try catch to handel it.
+  try {
+    burndown = kujiraDataMiner.burndownReportData(message, req.body.sprint);
+    error = 'Success found '+req.body.sprint;
+  }catch(err){
+    error = 'No such Sprint named '+req.body.sprint;
+  }
+  fs.writeFile('./public/js/burndown.json',  JSON.stringify(burndown, null, 4), function(err){
+    if(err){
+      console.log(err);
+    }else {
+      console.log('Success');
+    }
+  });
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('graphs', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message,
+      error: error
+    });
+  }
+});
+
+//render avearage age page populates with the existing json data
 router.get('/averageage', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
@@ -56,6 +89,7 @@ router.get('/averageage', function(req, res){
   }
 });
 
+//post passes start and end dates to render fresh graph
 router.post('/averageage', function(req, res){
   console.log(req.body.start);
   console.log(req.body.end);
@@ -106,6 +140,7 @@ router.get('/velocity', function(req, res){
   }
 });
 
+//renders createResolved page
 router.get('/createdResolved', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
