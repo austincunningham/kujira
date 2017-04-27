@@ -118,6 +118,31 @@ router.get('/createdResolved', function(req, res){
   }
 });
 
+//posts start and end date to re render graph create vs resolved
+router.post('/createResolved', function(req, res){
+  console.log(req.body.start);
+  console.log(req.body.end);
+  let start = new Date(req.body.start).toISOString().slice(0, 10);
+  let end = new Date(req.body.end).toISOString().slice(0, 10);
+  console.log(start,end);
+  let createresolved = kujiraDataMiner.createdResolved(message, start, end);
+  fs.writeFile('./public/js/createdResolved.json',  JSON.stringify(createresolved, null, 4), function(err){
+    if(err){
+      console.log(err);
+    }else {
+      console.log('Success');
+    }
+  });
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('createdResolved', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message
+    });
+  }
+});
 
 
 // /logout destroy session cookie and redirect to welcome

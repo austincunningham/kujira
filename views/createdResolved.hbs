@@ -1,5 +1,12 @@
 {{> mainmenu }}
-{{> graphmenu }}
+<div class="ui grid">
+    <div class="sixteen wide column">
+        <form action="/createResolved" method="POST" class="ui form">
+            {{>dateSprintForm}}
+        </form>
+
+    </div>
+</div>
 
 
 <div id="chartContainer" style="height: 300px; width: 100%;">
