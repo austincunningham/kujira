@@ -56,7 +56,34 @@ router.get('/averageage', function(req, res){
   }
 });
 
+router.post('/averageage', function(req, res){
+  console.log(req.body.start);
+  console.log(req.body.end);
+  let start = new Date(req.body.start).toISOString().slice(0, 10);
+  let end = new Date(req.body.end).toISOString().slice(0, 10);
+  console.log(start,end);
+  let averageage = kujiraDataMiner.averageAge(message, start, end);
+  fs.writeFile('./public/js/averageage.json',  JSON.stringify(averageage, null, 4), function(err){
+    if(err){
+      console.log(err);
+    }else {
+      console.log('Success');
+    }
+  });
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('averageage', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message
+    });
+  }
+});
 
+
+// message is a global variable that is populated by /query or /allQuery
+// TODO may need to put some check in to make sure message is populated before render of graphs
 router.get('/velocity', function(req, res){
   //change the message to velocity data with kujira-data-miner npm
   let velocity = kujiraDataMiner.velocity(message);

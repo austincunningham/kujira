@@ -21,6 +21,7 @@
     "kujira-data-miner": "^0.3.0-alpha.4",
     "path": "^0.12.7",
     "prompt": "^1.0.0",
-    "readline-sync": "^1.4.7"
+    "readline-sync": "^1.4.7",
+    "semantic-ui-calendar": "0.0.8"
   }
 }

@@ -1,8 +1,20 @@
 {{> mainmenu }}
-{{> graphmenu }}
+<div class="ui grid">
+    <div class="sixteen wide column">
+        <form action="/averageage" method="POST" class="ui form">
+        {{>dateSprintForm}}
+        </form>
+
+    </div>
+</div>
+
 
 
 <div id="chartContainer" style="height: 300px; width: 100%;">
 </div>
+
 </section>
 <script type="text/javascript" src="/js/averageage.js"></script>
+<script type="text/javascript">
+    $('.ui.calendar').calendar();
+</script>
