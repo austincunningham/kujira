@@ -37,6 +37,34 @@ router.get('/graphs', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
+    child = exec('jira-miner query search.js --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
+      console.log(stdout, error, stderr);
+
+      if(error){
+        res.render('graphs', {
+          title: 'Kujira Graphs Error',
+          error: stderr,
+          fields: fields
+        });
+      } else {
+        stdout = JSON.parse(stdout);
+        message = stdout;
+        res.render('graphs', {
+          title: 'Kujira Graphs',
+          message: message,
+          error: stderr,
+          fields: fields
+        });
+      }
+    });
+  }
+});
+
+//render avearage age page populates with the existing json data
+router.get('/burndown', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
     res.render('graphs', {
       title: 'Kujira graphs',
       fields: fields,
