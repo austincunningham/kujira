@@ -10,11 +10,13 @@ const fields = require('../fixtures/fields.json');
 const exec = require('child_process').exec;
 const session = require('express-session');
 const Handlebars = require('handlebars');
+const kujiraDataMiner = require('kujira-data-miner');
+const fs = require('fs');
 
 let child;
 let sess;
 let searchString = ' ';
-let message;
+let message = {};
 
 //jira-miner target takes json input url,username and password
 // open route welcome screen
@@ -30,7 +32,36 @@ router.get('/login', function(req, res){
   });
 });
 
+//this renders burndown on load
 router.get('/graphs', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    child = exec('jira-miner query search.js --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
+      console.log(stdout, error, stderr);
+
+      if(error){
+        res.render('graphs', {
+          title: 'Kujira Graphs Error',
+          error: stderr,
+          fields: fields
+        });
+      } else {
+        stdout = JSON.parse(stdout);
+        message = stdout;
+        res.render('graphs', {
+          title: 'Kujira Graphs',
+          message: message,
+          error: stderr,
+          fields: fields
+        });
+      }
+    });
+  }
+});
+
+//render avearage age page populates with the existing json data
+router.get('/burndown', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
@@ -42,6 +73,38 @@ router.get('/graphs', function(req, res){
   }
 });
 
+// post sprint name to change the data going to the graph
+router.post('/burndown', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    console.log(req.body.sprint);
+    let burndown;
+    let error;
+    //wasn't failing gracefully when typo in sprint name try catch to handel it.
+    try {
+      burndown = kujiraDataMiner.burndownReportData(message, req.body.sprint);
+      error = 'Success found '+req.body.sprint;
+    }catch(err){
+      error = 'No such Sprint named '+req.body.sprint;
+    }
+    fs.writeFile('./public/js/burndown.json',  JSON.stringify(burndown, null, 4), function(err){
+      if(err){
+        console.log(err);
+      }else {
+        console.log('Success');
+      }
+    });
+    res.render('graphs', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message,
+      error: error
+    });
+  }
+});
+
+//render avearage age page populates with the existing json data
 router.get('/averageage', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
@@ -54,10 +117,48 @@ router.get('/averageage', function(req, res){
   }
 });
 
-router.get('/velocity', function(req, res){
+//post passes start and end dates to render fresh graph
+router.post('/averageage', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
+    console.log(req.body.start);
+    console.log(req.body.end);
+    let start = new Date(req.body.start).toISOString().slice(0, 10);
+    let end = new Date(req.body.end).toISOString().slice(0, 10);
+    console.log(start,end);
+    let averageage = kujiraDataMiner.averageAge(message, start, end);
+    fs.writeFile('./public/js/averageage.json',  JSON.stringify(averageage, null, 4), function(err){
+      if(err){
+        console.log(err);
+      }else {
+        console.log('Success');
+      }
+    });
+    res.render('averageage', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message
+    });
+  }
+});
+
+
+// message is a global variable that is populated by /query or /allQuery
+router.get('/velocity', function(req, res){
+  //change the message to velocity data with kujira-data-miner npm
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    let velocity = kujiraDataMiner.velocity(message);
+    //create a new file
+    fs.writeFile('./public/js/velocity.json', JSON.stringify(velocity, null, 4), function(err){
+      if(err){
+        console.log(err);
+      }else {
+        console.log('Success');
+      }
+    });
     res.render('velocity', {
       title: 'Kujira graphs',
       fields: fields,
@@ -66,6 +167,7 @@ router.get('/velocity', function(req, res){
   }
 });
 
+//renders createResolved page
 router.get('/createdResolved', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
@@ -78,6 +180,31 @@ router.get('/createdResolved', function(req, res){
   }
 });
 
+//posts start and end date to re render graph create vs resolved
+router.post('/createResolved', function(req, res){
+  console.log(req.body.start);
+  console.log(req.body.end);
+  let start = new Date(req.body.start).toISOString().slice(0, 10);
+  let end = new Date(req.body.end).toISOString().slice(0, 10);
+  console.log(start,end);
+  let createresolved = kujiraDataMiner.createdResolved(message, start, end);
+  fs.writeFile('./public/js/createdResolved.json',  JSON.stringify(createresolved, null, 4), function(err){
+    if(err){
+      console.log(err);
+    }else {
+      console.log('Success');
+    }
+  });
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    res.render('createdResolved', {
+      title: 'Kujira graphs',
+      fields: fields,
+      message: message
+    });
+  }
+});
 
 
 // /logout destroy session cookie and redirect to welcome
@@ -127,45 +254,54 @@ router.post('/login', function(req, res){
 // /home post project
 router.post('/home', function(req, res){
 // execute jira-miner target to point at the source
-  child = exec('jira-miner populate "project in (' + req.body.project + ')"',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
-    console.log(stdout);
-    if(stdout.indexOf('Updated and stored collection') >= 0 ){
-      message = 'Connected to '+ req.body.project +' project';
-    }else{
-      message = 'Failed to connect to '+req.body.project +' project' + stderr;
-    }
-    res.render('home',{title: 'Kujira Home', message: message});
-  });
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    child = exec('jira-miner populate "project in (' + req.body.project + ')"', {maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
+      console.log(stdout);
+      if (stdout.indexOf('Updated and stored collection') >= 0) {
+        message = 'Connected to ' + req.body.project + ' project';
+      } else {
+        message = 'Failed to connect to ' + req.body.project + ' project' + stderr;
+      }
+      res.render('home', {title: 'Kujira Home', message: message});
+    });
+  }
 });
 
 // /home post project
 router.post('/query', function(req, res){
 // execute jira-miner target to point at the source
-  if (searchString.indexOf(req.body.value) >= 0){
-    console.log('do nothing');
-  }else {
-    searchString += '--' + req.body.field + '=' + req.body.value + ' ';
-  }
-  child = exec('jira-miner query search.js ' + searchString +' --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
-    console.log(stdout, error, stderr);
-    if(error){
-      res.render('query', {
-        title: 'Kujira Query Error',
-        error: stderr,
-        search: searchString,
-        fields: fields
-      });
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    if (searchString.indexOf(req.body.value) >= 0) {
+      console.log('do nothing');
     } else {
-      stdout = JSON.parse(stdout);
-      res.render('query', {
-        title: 'Kujira Query',
-        message: stdout,
-        error: stderr,
-        search: searchString,
-        fields: fields
-      });
+      searchString += '--' + req.body.field + '=' + req.body.value + ' ';
     }
-  });
+    child = exec('jira-miner query search.js ' + searchString + ' --json', {maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
+      console.log(stdout, error, stderr);
+      message = stdout;
+      if (error) {
+        res.render('query', {
+          title: 'Kujira Query Error',
+          error: stderr,
+          search: searchString,
+          fields: fields
+        });
+      } else {
+        stdout = JSON.parse(stdout);
+        res.render('query', {
+          title: 'Kujira Query',
+          message: stdout,
+          error: stderr,
+          search: searchString,
+          fields: fields
+        });
+      }
+    });
+  }
 });
 
 
@@ -185,26 +321,32 @@ router.post('/clearQuery', function(req, res){
 
 //Find all project data on query page
 router.post('/allQuery', function(req, res){
-  child = exec('jira-miner query search.js --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
-    console.log(stdout, error, stderr);
-    if(error){
-      res.render('query', {
-        title: 'Kujira Query Error',
-        error: stderr,
-        search: searchString,
-        fields: fields
-      });
-    } else {
-      stdout = JSON.parse(stdout);
-      res.render('query', {
-        title: 'Kujira Query',
-        message: stdout,
-        error: stderr,
-        search: searchString,
-        fields: fields
-      });
-    }
-  });
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    child = exec('jira-miner query search.js --json', {maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
+      console.log(stdout, error, stderr);
+
+      if (error) {
+        res.render('query', {
+          title: 'Kujira Query Error',
+          error: stderr,
+          search: searchString,
+          fields: fields
+        });
+      } else {
+        stdout = JSON.parse(stdout);
+        message = stdout;
+        res.render('query', {
+          title: 'Kujira Query',
+          message: stdout,
+          error: stderr,
+          search: searchString,
+          fields: fields
+        });
+      }
+    });
+  }
 });
 
 

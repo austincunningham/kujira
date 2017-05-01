@@ -31,12 +31,12 @@ window.onload = function () {
           chart.options.data[1].dataPoints.push({
             x: new Date(key),
             y: parseInt(averageage[key]),
-            indexLabel: " " + parseInt(averageage[key]),
+            //indexLabel: " " + parseInt(averageage[key]),
           });
           chart.options.data[0].dataPoints.push({
             x: new Date(key),
             y: averageage[key],
-            indexLabel: " " +parseInt(averageage[key]),
+            //indexLabel: " " +parseInt(averageage[key]),
           });
         }
       }

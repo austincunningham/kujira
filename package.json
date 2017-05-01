@@ -18,8 +18,10 @@
     "fs": "0.0.1-security",
     "handlebars": "^4.0.6",
     "jira-miner": "^0.3.3",
+    "kujira-data-miner": "^0.3.0-alpha.4",
     "path": "^0.12.7",
     "prompt": "^1.0.0",
-    "readline-sync": "^1.4.7"
+    "readline-sync": "^1.4.7",
+    "semantic-ui-calendar": "0.0.8"
   }
 }
