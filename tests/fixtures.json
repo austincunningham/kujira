@@ -1,0 +1,7 @@
+{
+  "invalidUser": {
+    "username": "test",
+    "password": "test",
+    "url": "issues.jboss.org"
+  }
+}

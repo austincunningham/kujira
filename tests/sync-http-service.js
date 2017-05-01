@@ -15,15 +15,18 @@ class SyncHttpService {
   setAuth(url, user) {
     const res = request('POST', this.baseUrl + url, {json: user});
     //will return 200/2xx even if fails as not using standard http auth
-    if(res.title === 'Kujira Home'){
+    if (res.body.indexOf('Kujira Home') >= 0 ) {
       return true;
 
     }
     return false;
   }
 
-  clearAuth() {
-    //sess = null;
+  clearAuth(url) {
+    const res = request('GET', this.baseUrl + url);
+    if(res.body.indexOf('Welcome to Kujira') >=0){
+      return true;
+    }
   }
 
   get(url) {

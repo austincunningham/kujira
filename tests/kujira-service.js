@@ -28,7 +28,7 @@ class kujiraService {
   }
 
   logout() {
-    this.httpService.clearAuth();
+    return this.httpService.clearAuth('/');
   }
 
 }
