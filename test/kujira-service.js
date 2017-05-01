@@ -31,6 +31,33 @@ class kujiraService {
     return this.httpService.clearAuth('/');
   }
 
+  getHome() {
+    return this.httpService.get('/home');
+  }
+
+  getQuery() {
+    return this.httpService.get('/query');
+  }
+  
+  getGraphs() {
+    return this.httpService.get('/graphs');
+  }
+
+  getCreatedResolved (){
+    return this.httpService.get('/createdResolved');
+  }
+
+  getVelocity() {
+    return this.httpService.get('/velocity');
+  }
+
+  getAverageAge() {
+    return this.httpService.get('/averageage');
+  }
+  
+  getBurndown() {
+    return this.httpService.get('/burndown');
+  }
 }
 
 module.exports = kujiraService;

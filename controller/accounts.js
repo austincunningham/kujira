@@ -66,7 +66,7 @@ router.get('/burndown', function(req, res){
     res.redirect('/');
   } else {
     res.render('graphs', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Burndown',
       fields: fields,
       message: message
     });
@@ -96,7 +96,7 @@ router.post('/burndown', function(req, res){
       }
     });
     res.render('graphs', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Burndown',
       fields: fields,
       message: message,
       error: error
@@ -110,7 +110,7 @@ router.get('/averageage', function(req, res){
     res.redirect('/');
   } else {
     res.render('averageage', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Average Age',
       fields: fields,
       message: message
     });
@@ -140,7 +140,7 @@ router.post('/averageage', function(req, res){
       }
     });
     res.render('averageage', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Average Age',
       fields: fields,
       message: message,
       error: error
@@ -151,11 +151,18 @@ router.post('/averageage', function(req, res){
 
 // message is a global variable that is populated by /query or /allQuery
 router.get('/velocity', function(req, res){
+  let velocity;
+  let error;
   //change the message to velocity data with kujira-data-miner npm
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    let velocity = kujiraDataMiner.velocity(message);
+    try {
+      let velocity = kujiraDataMiner.velocity(message);
+      error = 'Velocity Data';
+    } catch(err){
+      error = 'No Graphing data available';
+    }
     //create a new file
     fs.writeFile('./public/js/velocity.json', JSON.stringify(velocity, null, 4), function(err){
       if(err){
@@ -165,9 +172,10 @@ router.get('/velocity', function(req, res){
       }
     });
     res.render('velocity', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Velocity',
       fields: fields,
-      message: message
+      message: message,
+      error: error
     });
   }
 });
@@ -178,7 +186,7 @@ router.get('/createdResolved', function(req, res){
     res.redirect('/');
   } else {
     res.render('createdResolved', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Created Vs Resolved',
       fields: fields,
       message: message
     });
@@ -209,7 +217,7 @@ router.post('/createResolved', function(req, res){
     });
 
     res.render('createdResolved', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Created Vs Resolved',
       fields: fields,
       message: message,
       error: error
