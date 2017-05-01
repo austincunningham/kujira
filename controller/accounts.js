@@ -128,7 +128,7 @@ router.post('/averageage', function(req, res){
       let start = new Date(req.body.start).toISOString().slice(0, 10);
       let end = new Date(req.body.end).toISOString().slice(0, 10);
       averageage = kujiraDataMiner.averageAge(message, start, end);
-      error = 'Success valid date range' +req.body.start +' to '+req.body.end;
+      error = 'Success valid date range ' +req.body.start +' to '+req.body.end;
     } catch(err) {
       error = 'Invalid date range'
     }
@@ -196,7 +196,7 @@ router.post('/createResolved', function(req, res){
       let start = new Date(req.body.start).toISOString().slice(0, 10);
       let end = new Date(req.body.end).toISOString().slice(0, 10);
       let createresolved = kujiraDataMiner.createdResolved(message, start, end);
-      error = 'Success valid date range' +req.body.start +' to '+req.body.end;
+      error = 'Success valid date range ' +req.body.start +' to '+req.body.end;
     } catch(err) {
       error = 'Invalid date range'
     }
