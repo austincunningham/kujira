@@ -48,7 +48,7 @@ app.engine('hbs', expressHbs({extname:'hbs',
 app.set('view engine', 'hbs');
 
 
-// Only listen when app.js is run - acceptance tests will listen on another port
+// Only listen when app.js is run - acceptance test will listen on another port
 app.listen(8000, function () {
   console.log('Listening at http://localhost:8000');
 });
