@@ -119,15 +119,19 @@ router.get('/averageage', function(req, res){
 
 //post passes start and end dates to render fresh graph
 router.post('/averageage', function(req, res){
+  let averageage;
+  let error;
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    console.log(req.body.start);
-    console.log(req.body.end);
-    let start = new Date(req.body.start).toISOString().slice(0, 10);
-    let end = new Date(req.body.end).toISOString().slice(0, 10);
-    console.log(start,end);
-    let averageage = kujiraDataMiner.averageAge(message, start, end);
+    try {
+      let start = new Date(req.body.start).toISOString().slice(0, 10);
+      let end = new Date(req.body.end).toISOString().slice(0, 10);
+      averageage = kujiraDataMiner.averageAge(message, start, end);
+      error = 'Success valid date range' +req.body.start +' to '+req.body.end;
+    } catch(err) {
+      error = 'Invalid date range'
+    }
     fs.writeFile('./public/js/averageage.json',  JSON.stringify(averageage, null, 4), function(err){
       if(err){
         console.log(err);
@@ -138,7 +142,8 @@ router.post('/averageage', function(req, res){
     res.render('averageage', {
       title: 'Kujira graphs',
       fields: fields,
-      message: message
+      message: message,
+      error: error
     });
   }
 });
@@ -182,26 +187,32 @@ router.get('/createdResolved', function(req, res){
 
 //posts start and end date to re render graph create vs resolved
 router.post('/createResolved', function(req, res){
-  console.log(req.body.start);
-  console.log(req.body.end);
-  let start = new Date(req.body.start).toISOString().slice(0, 10);
-  let end = new Date(req.body.end).toISOString().slice(0, 10);
-  console.log(start,end);
-  let createresolved = kujiraDataMiner.createdResolved(message, start, end);
-  fs.writeFile('./public/js/createdResolved.json',  JSON.stringify(createresolved, null, 4), function(err){
-    if(err){
-      console.log(err);
-    }else {
-      console.log('Success');
-    }
-  });
+  let createresolved;
+  let error;
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
+    try {
+      let start = new Date(req.body.start).toISOString().slice(0, 10);
+      let end = new Date(req.body.end).toISOString().slice(0, 10);
+      let createresolved = kujiraDataMiner.createdResolved(message, start, end);
+      error = 'Success valid date range' +req.body.start +' to '+req.body.end;
+    } catch(err) {
+      error = 'Invalid date range'
+    }
+    fs.writeFile('./public/js/createdResolved.json',  JSON.stringify(createresolved, null, 4), function(err){
+      if(err){
+        console.log(err);
+      }else {
+        console.log('Success');
+      }
+    });
+
     res.render('createdResolved', {
       title: 'Kujira graphs',
       fields: fields,
-      message: message
+      message: message,
+      error: error
     });
   }
 });
