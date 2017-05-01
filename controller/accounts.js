@@ -78,7 +78,6 @@ router.post('/burndown', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    console.log(req.body.sprint);
     let burndown;
     let error;
     //wasn't failing gracefully when typo in sprint name try catch to handel it.
@@ -158,7 +157,7 @@ router.get('/velocity', function(req, res){
     res.redirect('/');
   } else {
     try {
-      let velocity = kujiraDataMiner.velocity(message);
+      velocity = kujiraDataMiner.velocity(message);
       error = 'Velocity Data';
     } catch(err){
       error = 'No Graphing data available';
@@ -194,7 +193,7 @@ router.get('/createdResolved', function(req, res){
 });
 
 //posts start and end date to re render graph create vs resolved
-router.post('/createResolved', function(req, res){
+router.post('/createdResolved', function(req, res){
   let createresolved;
   let error;
   if(!sess || !sess.username){
@@ -203,7 +202,7 @@ router.post('/createResolved', function(req, res){
     try {
       let start = new Date(req.body.start).toISOString().slice(0, 10);
       let end = new Date(req.body.end).toISOString().slice(0, 10);
-      let createresolved = kujiraDataMiner.createdResolved(message, start, end);
+      createresolved = kujiraDataMiner.createdResolved(message, start, end);
       error = 'Success valid date range ' +req.body.start +' to '+req.body.end;
     } catch(err) {
       error = 'Invalid date range'
@@ -331,7 +330,7 @@ router.post('/clearQuery', function(req, res){
     res.redirect('/');
   } else {
     res.render('query',{
-      title: 'Kujira Query',
+      title: 'Kujira Query Clear',
       fields: fields,
       search: searchString
     });
@@ -357,7 +356,7 @@ router.post('/allQuery', function(req, res){
         stdout = JSON.parse(stdout);
         message = stdout;
         res.render('query', {
-          title: 'Kujira Query',
+          title: 'Kujira Query All',
           message: stdout,
           error: stderr,
           search: searchString,

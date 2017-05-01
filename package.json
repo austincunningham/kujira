@@ -4,7 +4,7 @@
   "description": "consume jira-miner npm via cli prompt",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --ui tdd --timeout 10000"
+    "test": "mocha --ui tdd --timeout 1000000"
   },
   "author": "austincunningham",
   "license": "ISC",

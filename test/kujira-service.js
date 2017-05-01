@@ -58,6 +58,24 @@ class kujiraService {
   getBurndown() {
     return this.httpService.get('/burndown');
   }
+
+  postBurndown(obj){
+    return this.httpService.post('/burndown', obj);
+  }
+
+  postCreatedResolved(obj){
+    return this.httpService.post('/createdResolved', obj);
+  }
+
+  postAverageage(obj){
+    return this.httpService.post('/averageage', obj);
+  }
+
+  postAllQuery(obj){
+    return this.httpService.post('/allQuery', obj);
+  }
+
+
 }
 
 module.exports = kujiraService;
