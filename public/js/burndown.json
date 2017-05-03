@@ -1,1 +1,142 @@
-undefined
+{
+    "report": "Burndown report",
+    "sprint": "IR271",
+    "actualBurndown": [
+        {
+            "date": "2016-01-10",
+            "points": 28
+        },
+        {
+            "date": "2016-01-11",
+            "points": 28
+        },
+        {
+            "date": "2016-01-12",
+            "points": 28
+        },
+        {
+            "date": "2016-01-13",
+            "points": 28
+        },
+        {
+            "date": "2016-01-14",
+            "points": 28
+        },
+        {
+            "date": "2016-01-15",
+            "points": 28
+        },
+        {
+            "date": "2016-01-16",
+            "points": 28
+        },
+        {
+            "date": "2016-01-17",
+            "points": 28
+        },
+        {
+            "date": "2016-01-18",
+            "points": 28
+        },
+        {
+            "date": "2016-01-19",
+            "points": 28
+        },
+        {
+            "date": "2016-01-20",
+            "points": 28
+        },
+        {
+            "date": "2016-01-21",
+            "points": 28
+        },
+        {
+            "date": "2016-01-22",
+            "points": 28
+        },
+        {
+            "date": "2016-01-23",
+            "points": 28
+        },
+        {
+            "date": "2016-01-24",
+            "points": 28
+        }
+    ],
+    "expectedBurndown": [
+        {
+            "date": "2016-01-10",
+            "points": 28
+        },
+        {
+            "date": "2016-01-11",
+            "points": 25.2
+        },
+        {
+            "date": "2016-01-12",
+            "points": 22.4
+        },
+        {
+            "date": "2016-01-13",
+            "points": 19.6
+        },
+        {
+            "date": "2016-01-14",
+            "points": 16.8
+        },
+        {
+            "date": "2016-01-15",
+            "points": 14
+        },
+        {
+            "date": "2016-01-16",
+            "points": 14
+        },
+        {
+            "date": "2016-01-17",
+            "points": 14
+        },
+        {
+            "date": "2016-01-18",
+            "points": 11.200000000000003
+        },
+        {
+            "date": "2016-01-19",
+            "points": 8.400000000000002
+        },
+        {
+            "date": "2016-01-20",
+            "points": 5.600000000000001
+        },
+        {
+            "date": "2016-01-21",
+            "points": 2.8000000000000007
+        },
+        {
+            "date": "2016-01-22",
+            "points": 0
+        },
+        {
+            "date": "2016-01-23",
+            "points": 0
+        },
+        {
+            "date": "2016-01-24",
+            "points": 0
+        }
+    ],
+    "issueList": [
+        {
+            "issue": "RAINCATCH-585",
+            "events": "{\"Status\":[{\"author\":\"Wojciech Trocki\",\"change\":\"2017-02-21T20:45:56.000Z\",\"from\":\"Open\",\"to\":\"Open\"},{\"author\":\"Wojciech Trocki\",\"change\":\"2017-02-21T15:46:16.000-0500\",\"from\":\"Open\",\"to\":\"Coding In Progress\"}],\"Summary\":[{\"author\":\"Wojciech Trocki\",\"change\":\"2017-02-21T20:45:56.000Z\",\"from\":\"Investigation for proper aproach for loading templates. \",\"to\":\"Investigation for proper aproach for loading templates. \"},{\"author\":\"Wojciech Trocki\",\"change\":\"2017-02-21T15:46:34.000-0500\",\"from\":\"Investigation for proper aproach for loading templates. \",\"to\":\"Investigation for possible ways of loading templates\"}]}"
+        },
+        {
+            "issue": "RAINCATCH-25",
+            "events": "{\"Fix Version/s\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":[],\"to\":[]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-26T01:18:11.000-0500\",\"from\":[],\"to\":[\"3.10.0\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-03-29T16:04:49.000-0400\",\"from\":[\"3.10.0\"],\"to\":[]}],\"Sprint\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":[\"IR270\",\"IR271\",\"IR272\",\"IR273\"],\"to\":[\"IR270\",\"IR271\",\"IR272\",\"IR273\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-19T15:39:00.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\",\"IR273\"],\"to\":[\"IR270\",\"IR271\",\"IR272\"]},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T17:13:49.000-0500\",\"from\":[],\"to\":[\"IR269\"]},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-16T00:48:17.000-0500\",\"from\":[],\"to\":[\"IR270\"]},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-08T13:11:14.000-0500\",\"from\":[\"IR270\"],\"to\":[\"IR270\",\"IR271\"]},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-22T12:54:34.000-0500\",\"from\":[\"IR270\",\"IR271\"],\"to\":[\"IR270\",\"IR271\",\"IR272\"]},{\"author\":\"Jason Madigan\",\"change\":\"2016-02-09T10:00:31.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\"],\"to\":[\"IR270\",\"IR271\",\"IR272\",\"IR274\"]},{\"author\":\"Jason Madigan\",\"change\":\"2016-02-10T10:31:56.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\",\"IR274\"],\"to\":[\"IR270\",\"IR271\",\"IR272\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T13:54:31.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\"],\"to\":[\"IR270\",\"IR271\",\"IR272\",\"IR273\"]},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-16T00:48:17.000-0500\",\"from\":[\"IR269\"],\"to\":[]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-19T15:39:00.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\"],\"to\":[\"IR270\",\"IR271\",\"IR272\",\"Next sprint planning\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T10:17:28.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\",\"Next sprint planning\"],\"to\":[\"IR270\",\"IR271\",\"IR272\",\"IR274\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T12:53:59.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\",\"IR274\"],\"to\":[\"IR270\",\"IR271\",\"IR272\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T17:01:17.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\"],\"to\":[\"IR270\",\"IR271\",\"IR272\",\"WFM planning for IR275\"]},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-04T10:45:15.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\",\"WFM planning for IR275\"],\"to\":[\"IR270\",\"IR271\",\"IR272\",\"IR275\"]},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:40:00.000-0500\",\"from\":[\"IR270\",\"IR271\",\"IR272\",\"IR275\"],\"to\":[\"IR270\",\"IR271\",\"IR272\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-06T10:56:03.000-0400\",\"from\":[\"IR270\",\"IR271\",\"IR272\"],\"to\":[\"IR270\",\"IR271\",\"IR272\",\"Backlog Refinement\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:52:02.000-0400\",\"from\":[\"IR270\",\"IR271\",\"IR272\",\"Backlog Refinement\"],\"to\":[\"IR270\",\"IR271\",\"IR272\"]}],\"Labels\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":[],\"to\":[]},{\"author\":\"Niall Donnelly\",\"change\":\"2016-11-28T05:31:26.000-0500\",\"from\":[],\"to\":[\"reviewed_for_opensource\"]}],\"Remaining Estimate\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T14:47:35.000-0500\",\"from\":null,\"to\":\"28800\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T21:19:36.000-0500\",\"from\":\"28800\",\"to\":\"7200\"}],\"Assignee\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2016-01-22T16:19:32.000-0500\",\"from\":null,\"to\":\"Andres Galante\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-01T19:26:28.000-0500\",\"from\":\"Andres Galante\",\"to\":\"Brian Leathem\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-03T16:31:45.000-0400\",\"from\":\"Brian Leathem\",\"to\":null}],\"Status\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":\"Open\",\"to\":\"Open\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-01T19:26:28.000-0500\",\"from\":\"Open\",\"to\":\"Coding In Progress\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-19T15:38:55.000-0500\",\"from\":\"Coding In Progress\",\"to\":\"Open\"}],\"Component/s\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":[],\"to\":[]},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T11:48:29.000-0500\",\"from\":[],\"to\":[\"wfm\"]},{\"author\":\"Sebastien Blanc\",\"change\":\"2016-06-24T11:48:52.000-0400\",\"from\":[\"wfm\"],\"to\":[]}],\"Key\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":\"RHMAP-3501\",\"to\":\"RHMAP-3501\"},{\"author\":\"Sebastien Blanc\",\"change\":\"2016-06-24T11:48:52.000-0400\",\"from\":\"RHMAP-3501\",\"to\":\"RAINCATCH-25\"}],\"Story Points\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-03T11:10:55.000-0400\",\"from\":null,\"to\":\"5\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:44:03.000-0400\",\"from\":\"5\",\"to\":\"20\"}],\"Project\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":\"Red Hat Mobile Application Platform\",\"to\":\"Red Hat Mobile Application Platform\"},{\"author\":\"Sebastien Blanc\",\"change\":\"2016-06-24T11:48:52.000-0400\",\"from\":\"Red Hat Mobile Application Platform\",\"to\":\"FeedHenry RainCatcher\"}],\"Original Estimate\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T14:47:35.000-0500\",\"from\":null,\"to\":\"28800\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T21:19:36.000-0500\",\"from\":\"28800\",\"to\":\"7200\"}],\"Rank (Obsolete)\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-19T15:39:00.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T17:13:49.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-08T13:11:26.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-22T12:54:45.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-02-09T10:00:42.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-02-10T10:32:08.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T13:54:31.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-16T00:48:17.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T10:17:28.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T12:53:59.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-04T10:45:16.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:40:00.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-10T15:14:22.000-0400\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:52:03.000-0400\",\"from\":null,\"to\":\"Ranked lower\"}],\"Summary\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":\"A portal page for assigning user permissions\",\"to\":\"A portal page for assigning user permissions\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:39:54.000-0400\",\"from\":\"A portal page for assigning user permissions\",\"to\":\"A portal page for configuring role permissions\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:42:53.000-0400\",\"from\":\"A portal page for configuring role permissions\",\"to\":\"Provide the ability to configure role permissions\"}],\"Component Fix Version(s)\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T11:48:29.000-0500\",\"from\":null,\"to\":\"wfm\"},{\"author\":\"Sebastien Blanc\",\"change\":\"2016-06-24T11:48:52.000-0400\",\"from\":\"wfm\",\"to\":null}],\"Epic Link\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T11:48:20.000-0500\",\"from\":null,\"to\":\"RHMAP-658\"}],\"Rank\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:48:20.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-19T15:39:00.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T17:13:49.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-08T13:11:26.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-22T12:54:45.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-02-09T10:00:42.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-02-10T10:32:08.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T13:54:31.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-16T00:48:17.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T10:17:28.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T12:53:59.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-04T10:45:16.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:40:00.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-10T15:14:22.000-0400\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:52:03.000-0400\",\"from\":null,\"to\":\"Ranked lower\"}]}"
+        },
+        {
+            "issue": "RAINCATCH-24",
+            "events": "{\"Fix Version/s\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":[],\"to\":[]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-26T01:18:10.000-0500\",\"from\":[],\"to\":[\"3.10.0\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-03-29T16:04:49.000-0400\",\"from\":[\"3.10.0\"],\"to\":[]}],\"Resolution\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":null,\"to\":null},{\"author\":\"Niall Donnelly\",\"change\":\"2017-01-26T05:49:19.000-0500\",\"from\":null,\"to\":\"Out of Date\"}],\"Sprint\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":[\"IR271\",\"Backlog\"],\"to\":[\"IR271\",\"Backlog\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-19T16:30:10.000-0500\",\"from\":[\"IR271\",\"Backlog\"],\"to\":[\"IR271\"]},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-15T13:59:28.000-0500\",\"from\":[],\"to\":[\"IR271\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-04T17:14:33.000-0500\",\"from\":[\"IR271\",\"IR272\"],\"to\":[\"IR271\",\"IR273\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T13:53:45.000-0500\",\"from\":[\"IR271\",\"IR273\"],\"to\":[\"IR271\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T16:58:45.000-0500\",\"from\":[\"IR271\"],\"to\":[\"IR271\",\"Backlog\"]},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-22T12:54:34.000-0500\",\"from\":[\"IR271\"],\"to\":[\"IR271\",\"IR272\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T17:03:53.000-0500\",\"from\":[\"IR271\"],\"to\":[\"IR271\",\"WFM planning for IR275\"]},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-04T10:45:15.000-0500\",\"from\":[\"IR271\",\"WFM planning for IR275\"],\"to\":[\"IR271\",\"IR275\"]},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:46:57.000-0500\",\"from\":[\"IR271\",\"IR275\"],\"to\":[\"IR271\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-06T10:56:03.000-0400\",\"from\":[\"IR271\"],\"to\":[\"IR271\",\"Backlog Refinement\"]},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:52:02.000-0400\",\"from\":[\"IR271\",\"Backlog Refinement\"],\"to\":[\"IR271\"]}],\"Labels\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":[],\"to\":[]},{\"author\":\"Niall Donnelly\",\"change\":\"2016-11-28T05:31:16.000-0500\",\"from\":[],\"to\":[\"reviewed_for_opensource\"]}],\"Remaining Estimate\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T14:47:42.000-0500\",\"from\":null,\"to\":\"14400\"}],\"Status\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":\"Open\",\"to\":\"Open\"},{\"author\":\"Niall Donnelly\",\"change\":\"2017-01-26T05:49:19.000-0500\",\"from\":\"Open\",\"to\":\"Closed\"}],\"Component/s\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":[\"wfm\"],\"to\":[\"wfm\"]},{\"author\":\"Sebastien Blanc\",\"change\":\"2016-06-24T11:48:52.000-0400\",\"from\":[\"wfm\"],\"to\":[]}],\"Key\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":\"RHMAP-3502\",\"to\":\"RHMAP-3502\"},{\"author\":\"Sebastien Blanc\",\"change\":\"2016-06-24T11:48:52.000-0400\",\"from\":\"RHMAP-3502\",\"to\":\"RAINCATCH-24\"}],\"Story Points\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-03T11:12:10.000-0400\",\"from\":null,\"to\":\"8\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:39:10.000-0400\",\"from\":\"8\",\"to\":\"5\"}],\"Project\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":\"Red Hat Mobile Application Platform\",\"to\":\"Red Hat Mobile Application Platform\"},{\"author\":\"Sebastien Blanc\",\"change\":\"2016-06-24T11:48:52.000-0400\",\"from\":\"Red Hat Mobile Application Platform\",\"to\":\"FeedHenry RainCatcher\"}],\"Original Estimate\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":null,\"to\":null},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T14:47:42.000-0500\",\"from\":null,\"to\":\"14400\"}],\"Description\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":null,\"to\":null},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:45:20.000-0500\",\"from\":null,\"to\":\"API for locking down cloud endpoints and UI features based on user permissions\"}],\"Rank (Obsolete)\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":null,\"to\":null},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-04T10:45:16.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-15T13:59:28.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-22T12:54:46.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-04T17:14:33.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T13:53:45.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T13:54:05.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T17:03:53.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-01-14T11:46:25.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-03-10T19:38:32.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:42:35.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:46:57.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T16:03:48.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T16:03:54.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-10T15:14:22.000-0400\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:52:03.000-0400\",\"from\":null,\"to\":\"Ranked lower\"}],\"Summary\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":\"An API for locking down cloud endpoints and UI features based on user permissions\",\"to\":\"An API for locking down cloud endpoints and UI features based on user permissions\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:44:42.000-0500\",\"from\":\"An API for locking down cloud endpoints and UI features based on user permissions\",\"to\":\"Authorization on cloud endpoints\"}],\"Component Fix Version(s)\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":\"wfm\",\"to\":\"wfm\"},{\"author\":\"Sebastien Blanc\",\"change\":\"2016-06-24T11:48:52.000-0400\",\"from\":\"wfm\",\"to\":null}],\"Epic Link\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T11:50:01.000-0500\",\"from\":null,\"to\":\"RHMAP-658\"}],\"Rank\":[{\"author\":\"Brian Leathem\",\"change\":\"2015-12-14T16:50:01.000Z\",\"from\":null,\"to\":null},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-04T10:45:16.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2015-12-15T13:59:28.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jason Madigan\",\"change\":\"2016-01-22T12:54:46.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-04T17:14:33.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T13:53:45.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-18T13:54:05.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-02-22T17:03:53.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-01-14T11:46:25.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-03-10T19:38:32.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:42:35.000-0500\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T15:46:57.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T16:03:48.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Jay Balunas\",\"change\":\"2016-03-11T16:03:54.000-0500\",\"from\":null,\"to\":\"Ranked higher\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-10T15:14:22.000-0400\",\"from\":null,\"to\":\"Ranked lower\"},{\"author\":\"Brian Leathem\",\"change\":\"2016-05-19T09:52:03.000-0400\",\"from\":null,\"to\":\"Ranked lower\"}]}"
+        }
+    ]
+}

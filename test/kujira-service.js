@@ -72,9 +72,14 @@ class kujiraService {
   }
 
   postAllQuery(obj){
-    return this.httpService.post('/allQuery', obj);
+  return this.httpService.post('/allQuery', obj);
   }
-
+  postQuery(obj){
+    return this.httpService.post('/query', obj);
+  }
+  postClearQuery(){
+    return this.httpService.post('/clearQuery');
+  }
 
 }
 

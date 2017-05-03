@@ -136,8 +136,8 @@
     },
     {
         "sprint": "IR304 RMAD",
-        "expected": 59,
-        "actual": 0
+        "expected": 70,
+        "actual": 6
     },
     {
         "sprint": "LG Test Sprint IGNORE",

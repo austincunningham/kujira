@@ -14,6 +14,8 @@ const end = fixtures.endDate;
 const sprint = fixtures.sprintName;
 const invalidSprint = fixtures.invalidSprintName;
 const project = fixtures.project;
+const field = fixtures.field;
+const value = fixtures.value;
 
 suite('Route test', function () {
 
@@ -140,7 +142,20 @@ suite('Route test', function () {
     assert.equal(true, (response1.indexOf('Kujira Query All') >=0 ));
   });
 
-  test('post clear')
+  test('post query from query page', function(){
+    KujiraService.login(user);
+    const response = KujiraService.postQuery({field:field, value:value});
+    assert.equal(true , (response.indexOf('Kujira Query Results') >=0 ));
+    KujiraService.postClearQuery();
+  });
 
-
+  test('post clearQuery from query page', function(){
+    KujiraService.login(user);
+    const response = KujiraService.postQuery({field:field, value:value});
+    assert.equal(true , (response.indexOf('Kujira Query Results') >=0 ));
+    assert.equal(true, (response.indexOf(value) >=0 ));
+    KujiraService.postClearQuery();
+    assert.equal(true , (response.indexOf('Kujira Query') >=0 ));
+    assert.equal(false, (response.indexOf(value) >=0 ));
+  });
 });

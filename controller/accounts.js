@@ -311,7 +311,7 @@ router.post('/query', function(req, res){
       } else {
         stdout = JSON.parse(stdout);
         res.render('query', {
-          title: 'Kujira Query',
+          title: 'Kujira Query Results',
           message: stdout,
           error: stderr,
           search: searchString,

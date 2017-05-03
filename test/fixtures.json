@@ -9,8 +9,6 @@
   "sprintName": "IR302 - Boulder Breaker",
   "invalidSprintName": "invalid",
   "project": "RAINCATCH",
-  "field1": "Assignee",
-  "field2": "key",
-  "value1": "'Austin Cunningham'",
-  "value2": "RAINCATCH-630"
+  "field": "key",
+  "value": "RAINCATCH-630"
 }
