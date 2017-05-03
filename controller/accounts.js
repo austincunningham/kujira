@@ -17,6 +17,7 @@ let child;
 let sess;
 let searchString = ' ';
 let message = {};
+let sprintDropDown = {};
 
 //jira-miner target takes json input url,username and password
 // open route welcome screen
@@ -49,11 +50,13 @@ router.get('/graphs', function(req, res){
       } else {
         stdout = JSON.parse(stdout);
         message = stdout;
+        sprintDropDown = kujiraDataMiner.sprintInfo(message);
         res.render('graphs', {
           title: 'Kujira Graphs',
           message: message,
           error: stderr,
-          fields: fields
+          fields: fields,
+          sprintDropDown: sprintDropDown
         });
       }
     });
@@ -68,7 +71,8 @@ router.get('/burndown', function(req, res){
     res.render('graphs', {
       title: 'Kujira graphs Burndown',
       fields: fields,
-      message: message
+      message: message,
+      sprintDropDown: sprintDropDown
     });
   }
 });
@@ -98,7 +102,8 @@ router.post('/burndown', function(req, res){
       title: 'Kujira graphs Burndown',
       fields: fields,
       message: message,
-      error: error
+      error: error,
+      sprintDropDown: sprintDropDown
     });
   }
 });
