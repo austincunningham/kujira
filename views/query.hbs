@@ -69,7 +69,7 @@
                     <div class="content">
                         <p class="transition hidden">
                                 {{#each ../message}}
-                                        <button class="mini ui blue button"><i class="key icon"></i> {{key}} </button>
+                                  <a href = "https://issues.jboss.org/browse/{{key}}"> <button class="mini ui blue button"><i class="key icon"></i> {{key}} </button></a>
                                         <button class="mini ui blue basic button">{{lookup this ../name}}</button><br>
                                 {{/each}}
                         </p>

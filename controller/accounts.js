@@ -86,9 +86,7 @@ router.post('/burndown', function(req, res){
     let error;
     //wasn't failing gracefully when typo in sprint name try catch to handel it.
     try {
-      console.log(req.body.sprintName);
       burndown = kujiraDataMiner.burndownReportData(message, req.body.sprintName);
-      console.log(burndown);
       error = 'Success found '+req.body.sprintName;
     }catch(err){
       error = 'No such Sprint named '+req.body.sprintName;
