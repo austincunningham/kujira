@@ -70,7 +70,9 @@ class kujiraService {
   postAverageage(obj){
     return this.httpService.post('/averageage', obj);
   }
-
+  postHome(obj){
+    return this.httpService.post('/home',obj);
+  }
   postAllQuery(obj){
   return this.httpService.post('/allQuery', obj);
   }

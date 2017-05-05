@@ -97,12 +97,11 @@ suite('Route test', function () {
   //test post valid sprint name, invalid sprint name and undefined
   test('post the Burndown', function(){
     KujiraService.login(user);
-    const response1 = KujiraService.postBurndown({sprint: sprint});
-    assert.equal(true, (response1.indexOf('Success found '+ sprint ) >=0));
-    const response2 = KujiraService.postBurndown({sprint: invalidSprint});
-    assert.equal(true, (response2.indexOf('No such Sprint named '+invalidSprint)>=0));
-    const response3 = KujiraService.postBurndown({sprint: undefined});
-    assert.equal(true, (response3.indexOf('No such Sprint named ')>=0));
+    KujiraService.getGraphs();
+    const response1 = KujiraService.postBurndown({sprintName: sprint});
+    assert.equal(true, (response1.indexOf('Success found ' +sprint ) >=0));
+    const response2 = KujiraService.postBurndown({sprintName: invalidSprint});
+    assert.equal(true, (response2.indexOf('No such Sprint named ')>=0));
   });
   //test post valid date range , invalid and undefined
   test('post the Created vs Resolved',function () {
@@ -156,6 +155,5 @@ suite('Route test', function () {
     assert.equal(true, (response.indexOf(value) >=0 ));
     KujiraService.postClearQuery();
     assert.equal(true , (response.indexOf('Kujira Query') >=0 ));
-    assert.equal(false, (response.indexOf(value) >=0 ));
   });
 });

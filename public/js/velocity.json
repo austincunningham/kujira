@@ -1,8 +1,8 @@
 [
     {
-        "sprint": "IR299 RMAD 3.16.0 Testing",
-        "expected": 50,
-        "actual": 50
+        "sprint": "IR299 - RaincatchingSync",
+        "expected": 10,
+        "actual": 0
     },
     {
         "sprint": "IR274",
@@ -30,14 +30,14 @@
         "actual": 0
     },
     {
-        "sprint": "IR294 More Sync Testing",
-        "expected": 70,
-        "actual": 23
+        "sprint": "IR297 Reservoir 1",
+        "expected": 65,
+        "actual": 32
     },
     {
-        "sprint": "IR294 More Sync Testing",
-        "expected": 70,
-        "actual": 23
+        "sprint": "IR300 Umbrella",
+        "expected": 103,
+        "actual": 62
     },
     {
         "sprint": "IR285 Mongo & Logging",
@@ -48,6 +48,11 @@
         "sprint": "IR286 RMAD More Loggin",
         "expected": 3,
         "actual": 0
+    },
+    {
+        "sprint": "IR300 - THIS IS RAINCATCHER",
+        "expected": 26,
+        "actual": 21
     },
     {
         "sprint": "IR289 RMAD Bring The Raincatch",
@@ -65,19 +70,14 @@
         "actual": 44
     },
     {
-        "sprint": "IR292 - Reactions to vote",
-        "expected": 39,
-        "actual": 34
+        "sprint": "IR294 More Sync Testing",
+        "expected": 70,
+        "actual": 23
     },
     {
-        "sprint": "IR293 Fire Hose Testing",
-        "expected": 36,
-        "actual": 16
-    },
-    {
-        "sprint": "LG Test Sprint IGNORE",
-        "expected": 13,
-        "actual": 13
+        "sprint": "IR299 RMAD 3.16.0 Testing",
+        "expected": 50,
+        "actual": 50
     },
     {
         "sprint": "IR298 Reservoir Sync Errors",
@@ -85,24 +85,19 @@
         "actual": 36
     },
     {
-        "sprint": "IR297 Reservoir 1",
-        "expected": 65,
-        "actual": 32
+        "sprint": "IR292 - Reactions to vote",
+        "expected": 39,
+        "actual": 34
     },
     {
-        "sprint": "IR299 - RaincatchingSync",
-        "expected": 10,
-        "actual": 0
+        "sprint": "IR294 More Sync Testing",
+        "expected": 70,
+        "actual": 23
     },
     {
-        "sprint": "IR300 - THIS IS RAINCATCHER",
-        "expected": 26,
-        "actual": 21
-    },
-    {
-        "sprint": "IR300 Umbrella",
-        "expected": 103,
-        "actual": 62
+        "sprint": "IR293 Fire Hose Testing",
+        "expected": 36,
+        "actual": 16
     },
     {
         "sprint": "IR301 - Monorail!",
@@ -127,7 +122,12 @@
     {
         "sprint": "IR303 - RMAD Icicle",
         "expected": 85,
-        "actual": 72
+        "actual": 53
+    },
+    {
+        "sprint": "IR303 - RMAD Icicle",
+        "expected": 85,
+        "actual": 53
     },
     {
         "sprint": "IR303 - See other Sync",
@@ -136,7 +136,12 @@
     },
     {
         "sprint": "IR304 RMAD",
-        "expected": 67,
+        "expected": 70,
         "actual": 6
+    },
+    {
+        "sprint": "LG Test Sprint IGNORE",
+        "expected": 13,
+        "actual": 13
     }
 ]
