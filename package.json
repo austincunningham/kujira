@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha --ui tdd --timeout 1000000"
+    "start": "node app.js"
   },
   "author": "austincunningham",
   "license": "ISC",
