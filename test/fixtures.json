@@ -1,0 +1,14 @@
+{
+  "invalidUser": {
+    "username": "test",
+    "password": "test",
+    "url": "issues.jboss.org"
+  },
+  "startDate": "2017-04-17",
+  "endDate": "2017-04-23",
+  "sprintName": "IR269",
+  "invalidSprintName": "invalid",
+  "project": "RAINCATCH",
+  "field": "key",
+  "value": "RAINCATCH-630"
+}
