@@ -6,8 +6,10 @@
 const assert = require('chai').assert;
 const fixtures = require('./fixtures.json');
 const kujiraService = require('./kujira-service.js');
-const user = require('./../../kujira-credentials.json');
+//const user = require('./../../kujira-credentials.json');
 
+//need to add valid jira credentials to fixtures.validUser for test to run
+const user = fixtures.validUser;
 const invalidUser = fixtures.invalidUser;
 const start = fixtures.startDate;
 const end = fixtures.endDate;
