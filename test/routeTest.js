@@ -123,9 +123,10 @@ suite('Route test', function () {
     const response3 = KujiraService.postAverageage({start: undefined, end: undefined });
     assert.equal(true, (response3.indexOf('Invalid date range') >=0 ));
   });
-  //may have timeout issues with this test
+  //removing test as takes too long to run
+  //has timeout issues with this test, Also causing JIRA API limits to be hit
   //test post project from the home page
-  test('post from the home page', function(){
+  /*test('post from the home page', function(){
     KujiraService.login(user);
     const response1 = KujiraService.postHome({project: invalidSprint});
     assert.equal(true, (response1.indexOf('Failed to connect to ' + invalidSprint + ' project') >=0 ));
@@ -133,7 +134,7 @@ suite('Route test', function () {
     assert.equal(true, (response2.indexOf('Connected to ' + project + ' project') >=0 ));
     const response3 = KujiraService.postHome({project: undefined});
     assert.equal(true, (response3.indexOf('Failed to connect to ') >=0 ));
-  });
+  });*/
 
   test('post allQuery from query page', function(){
     KujiraService.login(user);
