@@ -33,6 +33,73 @@ router.get('/login', function(req, res){
   });
 });
 
+
+//this renders the report page
+router.get('/reports', function(req,res){
+  let burndown;
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    child = exec('jira-miner query search.js --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
+      console.log(stdout, error, stderr);
+
+      if(error){
+        res.render('reports', {
+          title: 'Kujira Reports Error',
+          error: stderr,
+          fields: fields
+        });
+      } else {
+        stdout = JSON.parse(stdout);
+        message = stdout;
+        sprintDropDown = kujiraDataMiner.sprintInfo(message);
+        res.render('reports', {
+          title: 'Kujira Reports',
+          message: message,
+          error: stderr,
+          fields: fields,
+          sprintDropDown: sprintDropDown,
+          burndown: burndown
+        });
+      }
+    });
+  }
+});
+
+// post sprint name to change the data going to the graph
+router.post('/reports', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    let burndown;
+    let error = '';
+    //wasn't failing gracefully when typo in sprint name try catch to handel it.
+    try {
+      burndown = kujiraDataMiner.burndownReportData(message, req.body.sprintName);
+      error = 'Success found '+req.body.sprintName;
+    }catch(err){
+      error = 'No such Sprint named '+req.body.sprintName;
+    }
+    fs.writeFile('./public/js/burndown.json',  JSON.stringify(burndown, null, 4), function(err){
+      if(err){
+        console.log(err);
+      }else {
+        console.log('Success');
+      }
+    });
+    res.render('reports', {
+      title: 'Kujira Report Burndown',
+      fields: fields,
+      message: message,
+      error: error,
+      sprintDropDown: sprintDropDown,
+      burndown: burndown
+    });
+  }
+});
+
+
+
 //this renders burndown on load
 router.get('/graphs', function(req, res){
   if(!sess || !sess.username){
@@ -129,8 +196,8 @@ router.post('/averageage', function(req, res){
     res.redirect('/');
   } else {
     try {
-      let start = new Date(req.body.start).toISOString().slice(0, 10);
-      let end = new Date(req.body.end).toISOString().slice(0, 10);
+      const start = new Date(req.body.start).toISOString().slice(0, 10);
+      const end = new Date(req.body.end).toISOString().slice(0, 10);
       averageage = kujiraDataMiner.averageAge(message, start, end);
       error = 'Success valid date range ' +req.body.start +' to '+req.body.end;
     } catch(err) {
@@ -205,8 +272,8 @@ router.post('/createdResolved', function(req, res){
     res.redirect('/');
   } else {
     try {
-      let start = new Date(req.body.start).toISOString().slice(0, 10);
-      let end = new Date(req.body.end).toISOString().slice(0, 10);
+      const start = new Date(req.body.start).toISOString().slice(0, 10);
+      const end = new Date(req.body.end).toISOString().slice(0, 10);
       createresolved = kujiraDataMiner.createdResolved(message, start, end);
       error = 'Success valid date range ' +req.body.start +' to '+req.body.end;
     } catch(err) {
