@@ -88,7 +88,15 @@ class kujiraService {
   postClearQuery(){
     return this.httpService.post('/clearQuery');
   }
-
+  postApiTarget(obj){
+    return this.httpService.post('/api/target', obj);
+  }
+  postApiPopulate(obj){
+    return this.httpService.post('/api/populate', obj);
+  }
+  postApiQuery(obj){
+    return this.httpService.post('/api/query', obj);
+  }
 }
 
 module.exports = kujiraService;
