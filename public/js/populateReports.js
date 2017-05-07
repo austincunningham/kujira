@@ -17,6 +17,7 @@ window.onload = function () {
         let Assignee;
         let StoryPointsTo;
         let StoryPointsFrom;
+        let Summary;
         try{
           const j = data.issueList[i].events.Status.length -1;
           Status = data.issueList[i].events.Status[j].to;
@@ -37,9 +38,17 @@ window.onload = function () {
           StoryPointsTo = " ";
           StoryPointsFrom = " ";
         }
+        try {
+          const m = data.issueList[i].events.Summary.length -1;
+          Summary = data.issueList[i].events.Summary[m].to;
+        } catch (err){
+          Summary = " ";
+        }
+
 
         $('.tablebody ').append('<tr><td><b>' + data.issueList[i].issue + "</b> </td><td>"
-            + Status + "</td><td>" + Assignee + '</td><td> To: ' + StoryPointsTo + " From: " + StoryPointsFrom + '</td><\/tr>');
+            + Status + "</td><td>" + Assignee + '</td><td>' + StoryPointsFrom + " <i class=\"arrow circle right icon\"></i> " + StoryPointsTo + '</td>' +
+            '<td>' + Summary + '</td><\/tr>');
       }
     }
 
