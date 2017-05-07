@@ -88,7 +88,7 @@ router.post('/reports', function(req, res){
       }
     });
     res.render('reports', {
-      title: 'Kujira Report Burndown',
+      title: 'Kujira Sprint Report',
       fields: fields,
       message: message,
       error: error,

@@ -96,6 +96,23 @@ suite('Route test', function () {
     const response2 = KujiraService.getBurndown();
     assert.equal(true, (response2.indexOf('Kujira graphs Burndown') >=0));
   });
+  // get route test
+  test('get the Reports screen', function(){
+    const response1 = KujiraService.getReports();
+    assert.equal(false, (response1.indexOf('Kujira Reports') >=0));
+    KujiraService.login(user);
+    const response2 = KujiraService.getReports();
+    assert.equal(true, (response2.indexOf('Kujira Reports') >=0));
+  });
+  //test post valid sprint name, invalid sprint name and undefined
+  test('post the Report', function(){
+    KujiraService.login(user);
+    KujiraService.getReports();
+    const response1 = KujiraService.postReports({sprintName: sprint});
+    assert.equal(true, (response1.indexOf('Success found ' +sprint ) >=0));
+    const response2 = KujiraService.postReports({sprintName: invalidSprint});
+    assert.equal(true, (response2.indexOf('No such Sprint named ')>=0));
+  });
   //test post valid sprint name, invalid sprint name and undefined
   test('post the Burndown', function(){
     KujiraService.login(user);

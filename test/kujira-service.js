@@ -58,7 +58,13 @@ class kujiraService {
   getBurndown() {
     return this.httpService.get('/burndown');
   }
+  getReports() {
+    return this.httpService.get('/reports');
+  }
 
+  postReports(obj){
+    return this.httpService.post('/reports', obj);
+  }
   postBurndown(obj){
     return this.httpService.post('/burndown', obj);
   }
