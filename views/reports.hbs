@@ -1,1 +1,37 @@
 {{> mainmenu }}
+<div class="four wide column">
+    <form action="/reports" method="POST" class="ui form">
+        <div class="ui selection dropdown" id="sprintName">
+            <input name=sprintName type="hidden">
+            <div class="default text">Select Field</div>
+            <i class="dropdown icon"></i>
+            <div class="menu" >
+                {{#each sprintDropDown}}
+                    <div class="item field" data-value="{{sprintName}}">{{sprintName}}</div>
+                {{/each}}
+            </div>
+
+        </div>
+
+        <button class="ui blue submit button">Submit</button>
+        <h5>{{error}}</h5>
+
+
+    </form>
+</div>
+
+<table class="ui selectable inverted blue table">
+    <thead>
+    <tr>
+        <th>Issue</th>
+        <th>Status</th>
+        <th>Assignee</th>
+        <th>Story Points changes <i class="arrow circle right icon"></i></th>
+        <th>Summary</th>
+    </tr>
+    </thead>
+    <tbody id="tablebody" class="tablebody">
+    </tbody>
+</table>
+
+<script type="text/javascript" src="js/populateReports.js"></script>

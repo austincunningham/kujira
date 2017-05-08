@@ -33,7 +33,7 @@ window.onload = function () {
           chart.options.data[0].dataPoints.push({
             x: new Date(key),
             y: created[key],
-            indexLabel: "" + parseInt(created[key]),
+            //indexLabel: "" + parseInt(created[key]),
           });
         }
       }
@@ -42,7 +42,7 @@ window.onload = function () {
           chart.options.data[1].dataPoints.push({
             x: new Date(key),
             y: resolved[key],
-            indexLabel: "" + parseInt(resolved[key]),
+            //indexLabel: "" + parseInt(resolved[key]),
           });
         }
       }

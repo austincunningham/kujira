@@ -1,4 +1,9 @@
 {
+  "validUser":{
+    "username": "InsertValidUsername",
+    "password": "InsertValidPassword",
+    "url": "issues.jboss.org"
+  },
   "invalidUser": {
     "username": "test",
     "password": "test",

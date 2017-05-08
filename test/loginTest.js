@@ -6,9 +6,11 @@
 const assert = require('chai').assert;
 const fixtures = require('./fixtures.json');
 const kujiraService = require('./kujira-service.js');
-const user = require('./../../kujira-credentials.json');
+//const user = require('./../../kujira-credentials.json');
 
 const invalidUser = fixtures.invalidUser;
+//need to add valid JIRA credentials for test to run
+const user = fixtures.validUser;
 
 suite('Auth Login/Logout test', function () {
 

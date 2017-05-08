@@ -58,7 +58,13 @@ class kujiraService {
   getBurndown() {
     return this.httpService.get('/burndown');
   }
+  getReports() {
+    return this.httpService.get('/reports');
+  }
 
+  postReports(obj){
+    return this.httpService.post('/reports', obj);
+  }
   postBurndown(obj){
     return this.httpService.post('/burndown', obj);
   }
@@ -82,7 +88,15 @@ class kujiraService {
   postClearQuery(){
     return this.httpService.post('/clearQuery');
   }
-
+  postApiTarget(obj){
+    return this.httpService.post('/api/target', obj);
+  }
+  postApiPopulate(obj){
+    return this.httpService.post('/api/populate', obj);
+  }
+  postApiQuery(obj){
+    return this.httpService.post('/api/query', obj);
+  }
 }
 
 module.exports = kujiraService;
