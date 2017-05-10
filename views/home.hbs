@@ -18,8 +18,10 @@
                 </form>
                 {{> formerror }}
                 <h2>{{message}}</h2>
-                {{#if dbExists}}
-                   <h2>No database exists please enter a project name</h2>
+                {{#if notDb}}
+                    <h5> Database found</h5>
+                {{else}}
+                    <h4>Warning no database file present, enter a project name</h4>
                 {{/if}}
             </div>
         </div>

@@ -19,7 +19,7 @@ let sess;
 let searchString = ' ';
 let message = {};
 let sprintDropDown = {};
-let dbExists;
+let notDb;
 
 //jira-miner target takes json input url,username and password
 // open route welcome screen
@@ -337,11 +337,11 @@ router.post('/login', function(req, res){
       sess = req.session;
       sess.username = req.body.username;
       if ((fs.existsSync(home + '/.jira-minerdb'))){
-        dbExists = false;
+        notDb = true;
       }else{
-        dbExists = true;
+        notDb = false;
       }
-      res.render('home',{title:'Kujira Home', dbExists:dbExists});
+      res.render('home',{title:'Kujira Home', notDb:notDb});
     }else{
       res.render('login',{title:'Login to Kujira', error: error, stderr: stderr});
     }
@@ -358,12 +358,12 @@ router.post('/home', function(req, res){
       console.log(stdout);
       if (stdout.indexOf('Updated and stored collection') >= 0) {
         message = 'Connected to ' + req.body.project + ' project';
-        dbExists = false;
+        notDb = true;
       } else {
         message = 'Failed to connect to ' + req.body.project + ' project' + stderr;
-        dbExists = true;
+        notDb = false;
       }
-      res.render('home', {title: 'Kujira Home', message: message, dbExists: dbExists});
+      res.render('home', {title: 'Kujira Home', message: message, notDb: notDb});
     });
   }
 });
