@@ -18,6 +18,9 @@
                 </form>
                 {{> formerror }}
                 <h2>{{message}}</h2>
+                {{#if dbExists}}
+                   <h2>No database exists please enter a project name</h2>
+                {{/if}}
             </div>
         </div>
     </div>

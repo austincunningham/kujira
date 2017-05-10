@@ -12,12 +12,14 @@ const session = require('express-session');
 const Handlebars = require('handlebars');
 const kujiraDataMiner = require('kujira-data-miner');
 const fs = require('fs');
+const home = require('os').homedir();
 
 let child;
 let sess;
 let searchString = ' ';
 let message = {};
 let sprintDropDown = {};
+let dbExists;
 
 //jira-miner target takes json input url,username and password
 // open route welcome screen
@@ -334,7 +336,12 @@ router.post('/login', function(req, res){
     if (stdout.indexOf('Successfully targeted JIRA') >= 0 ){
       sess = req.session;
       sess.username = req.body.username;
-      res.render('home',{title:'Kujira Home'});
+      if ((fs.existsSync(home + '/.jira-minerdb'))){
+        dbExists = false;
+      }else{
+        dbExists = true;
+      }
+      res.render('home',{title:'Kujira Home', dbExists:dbExists});
     }else{
       res.render('login',{title:'Login to Kujira', error: error, stderr: stderr});
     }
@@ -351,10 +358,12 @@ router.post('/home', function(req, res){
       console.log(stdout);
       if (stdout.indexOf('Updated and stored collection') >= 0) {
         message = 'Connected to ' + req.body.project + ' project';
+        dbExists = false;
       } else {
         message = 'Failed to connect to ' + req.body.project + ' project' + stderr;
+        dbExists = true;
       }
-      res.render('home', {title: 'Kujira Home', message: message});
+      res.render('home', {title: 'Kujira Home', message: message, dbExists: dbExists});
     });
   }
 });
@@ -387,7 +396,8 @@ router.post('/query', function(req, res){
           message: stdout,
           error: stderr,
           search: searchString,
-          fields: fields
+          fields: fields,
+
         });
       }
     });
