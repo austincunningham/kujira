@@ -2,7 +2,7 @@
 
 This the Kujira API.It is built using JavaScript/Node.js, ExpressJS and the jira-miner npm.
 
-** Target **
+**Target**
 ----
 Added a successful login to the .jira-miner file on your home directory
 
