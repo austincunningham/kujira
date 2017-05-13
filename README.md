@@ -77,3 +77,11 @@ Enter the value you wish to search for : "Austin Cunningham"
 Enter "y" quit or enter to continue :
 
 ```
+
+## Running tests
+
+`npm test`
+
+## API documentation
+
+See [API.md](API.md) for details.
