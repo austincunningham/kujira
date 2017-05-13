@@ -37,7 +37,7 @@ Added a successful login to the .jira-miner file on your home directory
   **Content:**
 
   ```javascript
-  { "" }
+  "" 
   ```
 
 * **Sample Call:**
