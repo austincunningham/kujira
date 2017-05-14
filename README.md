@@ -40,6 +40,13 @@ To get started you'll need to have the following requirements installed
 
     node app
     
+Returns    
+    
+    http://localhost:8000   
+     
+Which takes you to the Welcome screen.
+[![kujira-welcome-gui.jpg](https://s13.postimg.org/mhsq07xvb/kujira-welcome-gui.jpg)](https://postimg.org/image/buywusppv/)
+
 ## CLI Commands
      
 Node setup login into Jira and download a local copy of the project
