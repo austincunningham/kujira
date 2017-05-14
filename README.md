@@ -45,6 +45,7 @@ Returns
     http://localhost:8000   
      
 Which takes you to the Welcome screen.
+
 [![kujira-welcome-gui.jpg](https://s13.postimg.org/mhsq07xvb/kujira-welcome-gui.jpg)](https://postimg.org/image/buywusppv/)
 
 ## CLI Commands
