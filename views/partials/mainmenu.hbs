@@ -2,9 +2,11 @@
     <header class="header item"><a href="/"> Kujira </a></header>
     <div class="right menu">
         <a id="home"   class= "item" href="/home"> Home</a>
-        <a id="query" class= "item" href="/query">Query</a>
-        <a id="graphs" class="item" href="/graphs">Graphs</a>
-            <!--<a id="reports" class="item" href="/reports">Reports</a>-->
+        {{#if notDb}}
+            <a id="query" class= "item" href="/query">Query</a>
+            <a id="graphs" class="item" href="/graphs">Graphs</a>
+            <a id="reports" class="item" href="/reports">Reports</a>
+        {{/if}}
         <a id="logout" class= "item" href="/logout"> Logout</a>
         <!--<a id="settings" class= "item" href="/settings"> Settings</a>-->
     </div>

@@ -1,10 +1,16 @@
 {{> mainmenu }}
 <div class="ui grid">
+    <section class="four column row">
     <div class="sixteen wide column">
-        <form action="/createResolved" method="POST" class="ui form">
+        <form action="/createdResolved" method="POST" class="ui form">
             {{>dateSprintForm}}
         </form>
 
+        <div class="four wide column">
+            <a href="./js/createdResolved.json" download="createdResolved.json">
+                <button class="ui blue submit button">Download data!</button>
+            </a>
+        </div>
     </div>
 </div>
 

@@ -1,19 +1,40 @@
 {{> mainmenu }}
 <div class="ui grid">
-    <div class="sixteen wide column">
+    <section class="three column row">
+
+    <div class="four wide column">
+        <div class="four fields">
+            {{> graphmenu }}
+        </div>
+    </div>
+
+    <div class="four wide column">
         <form action="/burndown" method="POST" class="ui form">
-            <div class="four fields">
-                {{> graphmenu }}
-                <div class="field">
-                    <label>Sprint Name</label>
-                    <input type="text" placeholder="Sprint Name" name="sprint">
-                    <label>Submit </label>
-                    <button class="ui blue submit button">Submit</button>
-                    <h3>{{error}}</h3>
+                <div class="ui selection dropdown" id="sprintName">
+                    <input name=sprintName type="hidden">
+                    <div class="default text">Select Field</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu" >
+                        {{#each sprintDropDown}}
+                            <div class="item field" data-value="{{sprintName}}">{{sprintName}}</div>
+                        {{/each}}
+                    </div>
+
                 </div>
-            </div>
+
+                <button class="ui blue submit button">Submit</button>
+                <h5>{{error}}</h5>
+
+
         </form>
     </div>
+
+    <div class="four wide column">
+        <a href="./js/burndown.json" download="burndown.json">
+            <button class="ui blue submit button">Download sprint data!</button>
+        </a>
+    </div>
+    </section>
 </div>
 
 

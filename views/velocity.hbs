@@ -1,6 +1,26 @@
 {{> mainmenu }}
-{{> graphmenu }}
+<div class="ui grid">
+    <section class="three column row">
 
+        <div class="four wide column">
+            <div class="four fields">
+                {{> graphmenu }}
+            </div>
+        </div>
+
+        <div class="four wide column">
+            <h4>{{error}}</h4>
+        </div>
+
+
+        <div class="four wide column">
+            <a href="./js/velocity.json" download="velocity.json">
+                <button class="ui blue submit button">Download chart data!</button>
+            </a>
+        </div>
+
+    </section>
+</div>
 
 <div id="chartContainer" style="height: 300px; width: 100%;">
 </div>

@@ -12,11 +12,14 @@ const session = require('express-session');
 const Handlebars = require('handlebars');
 const kujiraDataMiner = require('kujira-data-miner');
 const fs = require('fs');
+const home = require('os').homedir();
 
 let child;
 let sess;
 let searchString = ' ';
 let message = {};
+let sprintDropDown = {};
+let notDb;
 
 //jira-miner target takes json input url,username and password
 // open route welcome screen
@@ -32,6 +35,76 @@ router.get('/login', function(req, res){
   });
 });
 
+
+//this renders the report page
+router.get('/reports', function(req,res){
+  let burndown;
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    child = exec('jira-miner query search.js --json',{maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
+      console.log(stdout, error, stderr);
+
+      if(error){
+        res.render('reports', {
+          title: 'Kujira Reports Error',
+          error: stderr,
+          fields: fields,
+          notDb: notDb
+        });
+      } else {
+        stdout = JSON.parse(stdout);
+        message = stdout;
+        sprintDropDown = kujiraDataMiner.sprintInfo(message);
+        res.render('reports', {
+          title: 'Kujira Reports',
+          message: message,
+          error: stderr,
+          fields: fields,
+          sprintDropDown: sprintDropDown,
+          burndown: burndown,
+          notDb: notDb
+        });
+      }
+    });
+  }
+});
+
+// post sprint name to change the data going to the graph
+router.post('/reports', function(req, res){
+  if(!sess || !sess.username){
+    res.redirect('/');
+  } else {
+    let burndown;
+    let error = '';
+    //wasn't failing gracefully when typo in sprint name try catch to handel it.
+    try {
+      burndown = kujiraDataMiner.burndownReportData(message, req.body.sprintName);
+      error = 'Success found '+req.body.sprintName;
+    }catch(err){
+      error = 'No such Sprint named '+req.body.sprintName;
+    }
+    fs.writeFile('./public/js/burndown.json',  JSON.stringify(burndown, null, 4), function(err){
+      if(err){
+        console.log(err);
+      }else {
+        console.log('Success');
+      }
+    });
+    res.render('reports', {
+      title: 'Kujira Sprint Report',
+      fields: fields,
+      message: message,
+      error: error,
+      sprintDropDown: sprintDropDown,
+      burndown: burndown,
+      notDb: notDb
+    });
+  }
+});
+
+
+
 //this renders burndown on load
 router.get('/graphs', function(req, res){
   if(!sess || !sess.username){
@@ -44,16 +117,20 @@ router.get('/graphs', function(req, res){
         res.render('graphs', {
           title: 'Kujira Graphs Error',
           error: stderr,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       } else {
         stdout = JSON.parse(stdout);
         message = stdout;
+        sprintDropDown = kujiraDataMiner.sprintInfo(message);
         res.render('graphs', {
           title: 'Kujira Graphs',
           message: message,
           error: stderr,
-          fields: fields
+          fields: fields,
+          sprintDropDown: sprintDropDown,
+          notDb: notDb
         });
       }
     });
@@ -66,9 +143,11 @@ router.get('/burndown', function(req, res){
     res.redirect('/');
   } else {
     res.render('graphs', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Burndown',
       fields: fields,
-      message: message
+      message: message,
+      sprintDropDown: sprintDropDown,
+      notDb: notDb
     });
   }
 });
@@ -78,15 +157,14 @@ router.post('/burndown', function(req, res){
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    console.log(req.body.sprint);
     let burndown;
     let error;
     //wasn't failing gracefully when typo in sprint name try catch to handel it.
     try {
-      burndown = kujiraDataMiner.burndownReportData(message, req.body.sprint);
-      error = 'Success found '+req.body.sprint;
+      burndown = kujiraDataMiner.burndownReportData(message, req.body.sprintName);
+      error = 'Success found '+req.body.sprintName;
     }catch(err){
-      error = 'No such Sprint named '+req.body.sprint;
+      error = 'No such Sprint named '+req.body.sprintName;
     }
     fs.writeFile('./public/js/burndown.json',  JSON.stringify(burndown, null, 4), function(err){
       if(err){
@@ -96,10 +174,12 @@ router.post('/burndown', function(req, res){
       }
     });
     res.render('graphs', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Burndown',
       fields: fields,
       message: message,
-      error: error
+      error: error,
+      sprintDropDown: sprintDropDown,
+      notDb: notDb
     });
   }
 });
@@ -110,24 +190,29 @@ router.get('/averageage', function(req, res){
     res.redirect('/');
   } else {
     res.render('averageage', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Average Age',
       fields: fields,
-      message: message
+      message: message,
+      notDb: notDb
     });
   }
 });
 
 //post passes start and end dates to render fresh graph
 router.post('/averageage', function(req, res){
+  let averageage;
+  let error;
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    console.log(req.body.start);
-    console.log(req.body.end);
-    let start = new Date(req.body.start).toISOString().slice(0, 10);
-    let end = new Date(req.body.end).toISOString().slice(0, 10);
-    console.log(start,end);
-    let averageage = kujiraDataMiner.averageAge(message, start, end);
+    try {
+      const start = new Date(req.body.start).toISOString().slice(0, 10);
+      const end = new Date(req.body.end).toISOString().slice(0, 10);
+      averageage = kujiraDataMiner.averageAge(message, start, end);
+      error = 'Success valid date range ' +req.body.start +' to '+req.body.end;
+    } catch(err) {
+      error = 'Invalid date range'
+    }
     fs.writeFile('./public/js/averageage.json',  JSON.stringify(averageage, null, 4), function(err){
       if(err){
         console.log(err);
@@ -136,9 +221,11 @@ router.post('/averageage', function(req, res){
       }
     });
     res.render('averageage', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Average Age',
       fields: fields,
-      message: message
+      message: message,
+      error: error,
+      notDb: notDb
     });
   }
 });
@@ -146,11 +233,18 @@ router.post('/averageage', function(req, res){
 
 // message is a global variable that is populated by /query or /allQuery
 router.get('/velocity', function(req, res){
+  let velocity;
+  let error;
   //change the message to velocity data with kujira-data-miner npm
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    let velocity = kujiraDataMiner.velocity(message);
+    try {
+      velocity = kujiraDataMiner.velocity(message);
+      error = 'Velocity Data';
+    } catch(err){
+      error = 'No Graphing data available';
+    }
     //create a new file
     fs.writeFile('./public/js/velocity.json', JSON.stringify(velocity, null, 4), function(err){
       if(err){
@@ -160,9 +254,11 @@ router.get('/velocity', function(req, res){
       }
     });
     res.render('velocity', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Velocity',
       fields: fields,
-      message: message
+      message: message,
+      error: error,
+      notDb: notDb
     });
   }
 });
@@ -173,35 +269,43 @@ router.get('/createdResolved', function(req, res){
     res.redirect('/');
   } else {
     res.render('createdResolved', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Created Vs Resolved',
       fields: fields,
-      message: message
+      message: message,
+      notDb: notDb
     });
   }
 });
 
 //posts start and end date to re render graph create vs resolved
-router.post('/createResolved', function(req, res){
-  console.log(req.body.start);
-  console.log(req.body.end);
-  let start = new Date(req.body.start).toISOString().slice(0, 10);
-  let end = new Date(req.body.end).toISOString().slice(0, 10);
-  console.log(start,end);
-  let createresolved = kujiraDataMiner.createdResolved(message, start, end);
-  fs.writeFile('./public/js/createdResolved.json',  JSON.stringify(createresolved, null, 4), function(err){
-    if(err){
-      console.log(err);
-    }else {
-      console.log('Success');
-    }
-  });
+router.post('/createdResolved', function(req, res){
+  let createresolved;
+  let error;
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
+    try {
+      const start = new Date(req.body.start).toISOString().slice(0, 10);
+      const end = new Date(req.body.end).toISOString().slice(0, 10);
+      createresolved = kujiraDataMiner.createdResolved(message, start, end);
+      error = 'Success valid date range ' +req.body.start +' to '+req.body.end;
+    } catch(err) {
+      error = 'Invalid date range'
+    }
+    fs.writeFile('./public/js/createdResolved.json',  JSON.stringify(createresolved, null, 4), function(err){
+      if(err){
+        console.log(err);
+      }else {
+        console.log('Success');
+      }
+    });
+
     res.render('createdResolved', {
-      title: 'Kujira graphs',
+      title: 'Kujira graphs Created Vs Resolved',
       fields: fields,
-      message: message
+      message: message,
+      error: error,
+      notDb: notDb
     });
   }
 });
@@ -223,7 +327,7 @@ router.get('/home', function (req, res) {
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    res.render('home',{title: 'Kujira Home'});
+    res.render('home',{title: 'Kujira Home',notDb: notDb});
   }
 });
 
@@ -232,7 +336,7 @@ router.get('/query', function (req, res) {
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    res.render('query',{title: 'Kujira Query',fields: fields});
+    res.render('query',{title: 'Kujira Query',fields: fields,notDb: notDb});
   }
 
 });
@@ -244,7 +348,12 @@ router.post('/login', function(req, res){
     if (stdout.indexOf('Successfully targeted JIRA') >= 0 ){
       sess = req.session;
       sess.username = req.body.username;
-      res.render('home',{title:'Kujira Home'});
+      if ((fs.existsSync(home + '/.jira-minerdb'))){
+        notDb = true;
+      }else{
+        notDb = false;
+      }
+      res.render('home',{title:'Kujira Home', notDb:notDb});
     }else{
       res.render('login',{title:'Login to Kujira', error: error, stderr: stderr});
     }
@@ -261,10 +370,12 @@ router.post('/home', function(req, res){
       console.log(stdout);
       if (stdout.indexOf('Updated and stored collection') >= 0) {
         message = 'Connected to ' + req.body.project + ' project';
+        notDb = true;
       } else {
         message = 'Failed to connect to ' + req.body.project + ' project' + stderr;
+        notDb = false;
       }
-      res.render('home', {title: 'Kujira Home', message: message});
+      res.render('home', {title: 'Kujira Home', message: message, notDb: notDb});
     });
   }
 });
@@ -288,16 +399,18 @@ router.post('/query', function(req, res){
           title: 'Kujira Query Error',
           error: stderr,
           search: searchString,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       } else {
         stdout = JSON.parse(stdout);
         res.render('query', {
-          title: 'Kujira Query',
+          title: 'Kujira Query Results',
           message: stdout,
           error: stderr,
           search: searchString,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       }
     });
@@ -312,9 +425,10 @@ router.post('/clearQuery', function(req, res){
     res.redirect('/');
   } else {
     res.render('query',{
-      title: 'Kujira Query',
+      title: 'Kujira Query Clear',
       fields: fields,
-      search: searchString
+      search: searchString,
+      notDb: notDb
     });
   }
 });
@@ -332,17 +446,19 @@ router.post('/allQuery', function(req, res){
           title: 'Kujira Query Error',
           error: stderr,
           search: searchString,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       } else {
         stdout = JSON.parse(stdout);
         message = stdout;
         res.render('query', {
-          title: 'Kujira Query',
+          title: 'Kujira Query All',
           message: stdout,
           error: stderr,
           search: searchString,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       }
     });
