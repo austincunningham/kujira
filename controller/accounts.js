@@ -49,7 +49,8 @@ router.get('/reports', function(req,res){
         res.render('reports', {
           title: 'Kujira Reports Error',
           error: stderr,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       } else {
         stdout = JSON.parse(stdout);
@@ -61,7 +62,8 @@ router.get('/reports', function(req,res){
           error: stderr,
           fields: fields,
           sprintDropDown: sprintDropDown,
-          burndown: burndown
+          burndown: burndown,
+          notDb: notDb
         });
       }
     });
@@ -95,7 +97,8 @@ router.post('/reports', function(req, res){
       message: message,
       error: error,
       sprintDropDown: sprintDropDown,
-      burndown: burndown
+      burndown: burndown,
+      notDb: notDb
     });
   }
 });
@@ -114,7 +117,8 @@ router.get('/graphs', function(req, res){
         res.render('graphs', {
           title: 'Kujira Graphs Error',
           error: stderr,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       } else {
         stdout = JSON.parse(stdout);
@@ -125,7 +129,8 @@ router.get('/graphs', function(req, res){
           message: message,
           error: stderr,
           fields: fields,
-          sprintDropDown: sprintDropDown
+          sprintDropDown: sprintDropDown,
+          notDb: notDb
         });
       }
     });
@@ -141,7 +146,8 @@ router.get('/burndown', function(req, res){
       title: 'Kujira graphs Burndown',
       fields: fields,
       message: message,
-      sprintDropDown: sprintDropDown
+      sprintDropDown: sprintDropDown,
+      notDb: notDb
     });
   }
 });
@@ -172,7 +178,8 @@ router.post('/burndown', function(req, res){
       fields: fields,
       message: message,
       error: error,
-      sprintDropDown: sprintDropDown
+      sprintDropDown: sprintDropDown,
+      notDb: notDb
     });
   }
 });
@@ -185,7 +192,8 @@ router.get('/averageage', function(req, res){
     res.render('averageage', {
       title: 'Kujira graphs Average Age',
       fields: fields,
-      message: message
+      message: message,
+      notDb: notDb
     });
   }
 });
@@ -216,7 +224,8 @@ router.post('/averageage', function(req, res){
       title: 'Kujira graphs Average Age',
       fields: fields,
       message: message,
-      error: error
+      error: error,
+      notDb: notDb
     });
   }
 });
@@ -248,7 +257,8 @@ router.get('/velocity', function(req, res){
       title: 'Kujira graphs Velocity',
       fields: fields,
       message: message,
-      error: error
+      error: error,
+      notDb: notDb
     });
   }
 });
@@ -261,7 +271,8 @@ router.get('/createdResolved', function(req, res){
     res.render('createdResolved', {
       title: 'Kujira graphs Created Vs Resolved',
       fields: fields,
-      message: message
+      message: message,
+      notDb: notDb
     });
   }
 });
@@ -293,7 +304,8 @@ router.post('/createdResolved', function(req, res){
       title: 'Kujira graphs Created Vs Resolved',
       fields: fields,
       message: message,
-      error: error
+      error: error,
+      notDb: notDb
     });
   }
 });
@@ -315,7 +327,7 @@ router.get('/home', function (req, res) {
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    res.render('home',{title: 'Kujira Home'});
+    res.render('home',{title: 'Kujira Home',notDb: notDb});
   }
 });
 
@@ -324,7 +336,7 @@ router.get('/query', function (req, res) {
   if(!sess || !sess.username){
     res.redirect('/');
   } else {
-    res.render('query',{title: 'Kujira Query',fields: fields});
+    res.render('query',{title: 'Kujira Query',fields: fields,notDb: notDb});
   }
 
 });
@@ -387,7 +399,8 @@ router.post('/query', function(req, res){
           title: 'Kujira Query Error',
           error: stderr,
           search: searchString,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       } else {
         stdout = JSON.parse(stdout);
@@ -397,7 +410,7 @@ router.post('/query', function(req, res){
           error: stderr,
           search: searchString,
           fields: fields,
-
+          notDb: notDb
         });
       }
     });
@@ -414,7 +427,8 @@ router.post('/clearQuery', function(req, res){
     res.render('query',{
       title: 'Kujira Query Clear',
       fields: fields,
-      search: searchString
+      search: searchString,
+      notDb: notDb
     });
   }
 });
@@ -432,7 +446,8 @@ router.post('/allQuery', function(req, res){
           title: 'Kujira Query Error',
           error: stderr,
           search: searchString,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       } else {
         stdout = JSON.parse(stdout);
@@ -442,7 +457,8 @@ router.post('/allQuery', function(req, res){
           message: stdout,
           error: stderr,
           search: searchString,
-          fields: fields
+          fields: fields,
+          notDb: notDb
         });
       }
     });
