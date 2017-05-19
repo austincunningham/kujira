@@ -90,8 +90,23 @@ Enter "y" quit or enter to continue :
 ```
 
 ## Running tests
+You need Jira credendials to run the tests. You need to update
 
-`npm test`
+    /kujira/test/fixtures.json.validUser 
+ 
+with valid credentials before running tests.
+
+````$xslt
+"validUser":{
+    "username": "InsertValidUsername",
+    "password": "InsertValidPassword",
+    "url": "issues.jboss.org"
+  },
+````
+
+Run tests
+
+    `npm test`
 
 ## API documentation
 
