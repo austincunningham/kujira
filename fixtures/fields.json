@@ -255,49 +255,6 @@
     }
   },
   {
-    "id": "aggregateprogress",
-    "name": "Σ Progress",
-    "custom": false,
-    "orderable": false,
-    "navigable": true,
-    "searchable": false,
-    "clauseNames": [],
-    "schema": {
-      "type": "progress",
-      "system": "aggregateprogress"
-    }
-  },
-  {
-    "id": "progress",
-    "name": "Progress",
-    "custom": false,
-    "orderable": false,
-    "navigable": true,
-    "searchable": false,
-    "clauseNames": [
-      "progress"
-    ],
-    "schema": {
-      "type": "progress",
-      "system": "progress"
-    }
-  },
-  {
-    "id": "votes",
-    "name": "Votes",
-    "custom": false,
-    "orderable": false,
-    "navigable": true,
-    "searchable": false,
-    "clauseNames": [
-      "votes"
-    ],
-    "schema": {
-      "type": "votes",
-      "system": "votes"
-    }
-  },
-  {
     "id": "worklog",
     "name": "Log Work",
     "custom": false,
@@ -416,21 +373,6 @@
       "type": "option",
       "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
       "customId": 12310742
-    }
-  },
-  {
-    "id": "watches",
-    "name": "Watchers",
-    "custom": false,
-    "orderable": false,
-    "navigable": true,
-    "searchable": false,
-    "clauseNames": [
-      "watchers"
-    ],
-    "schema": {
-      "type": "watches",
-      "system": "watches"
     }
   },
   {
