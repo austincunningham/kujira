@@ -9,9 +9,9 @@ window.onload = function () {
     resolved = data[1].resolved;
 
     var chart= new CanvasJS.Chart("chartContainer", {
-      title:{
+      /*title:{
         text: "Created Vs Resolved Chart"
-      },
+      },*/
       axisX: {
         lineThickness: 2
       },
