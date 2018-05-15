@@ -9,11 +9,11 @@ The project has a web interface that can also query JIRA and return data graphs 
 
 ## Demo Video GUI
 
-[![ScreenShot](https://s24.postimg.org/5x4ly9wc5/kujira_demo.jpg)](https://youtu.be/oGjQbwPOAoo)
+[![ScreenShot](./images/kujira_demo.JPG)](https://youtu.be/oGjQbwPOAoo)
 
 ## Demo CLI
 
-[![ScreenShot](https://s16.postimg.org/cyaubmfvp/kujira_cli_demo.jpg)](https://youtu.be/JcZo6eYeboQ)
+[![ScreenShot](./images/kujira_cli_demo.JPG)](https://youtu.be/JcZo6eYeboQ)
 
 ## Pre-requisites 
 
@@ -49,7 +49,7 @@ Returns
      
 Which takes you to the Welcome screen.
 
-[![kujira-welcome-gui.jpg](https://s13.postimg.org/mhsq07xvb/kujira-welcome-gui.jpg)](https://postimg.org/image/buywusppv/)
+[![kujira-welcome-gui.jpg](./images/kujira-welcome-gui.JPG)](https://postimg.org/image/buywusppv/)
 
 ## CLI Commands
      
