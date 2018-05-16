@@ -2,7 +2,7 @@
 ---
 
 # Kujira.js 
-![Build Status](https://api.travis-ci.org/austincunningham/kujira.svg?branch=dev)
+[![Build Status](https://travis-ci.org/austincunningham/kujira.svg?branch=dev)](https://travis-ci.org/austincunningham/kujira)
 
 This is a project to query JIRA via cli and return json, csv or tsv data as a result of the search. 
 
