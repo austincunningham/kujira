@@ -368,7 +368,7 @@ router.post('/home', function(req, res){
   } else {
     child = exec('jira-miner populate "project in (' + req.body.project + ')"', {maxBuffer: 1024 * 20000}, function (error, stdout, stderr) {
       console.log(stdout);
-      if (stdout.indexOf('Updated and stored collection') >= 0) {
+      if (stdout.indexOf('Updated and stored collection') >= 0 || stdout.indexOf('Updated local database') >= 0) {
         message = 'Connected to ' + req.body.project + ' project';
         notDb = true;
       } else {
